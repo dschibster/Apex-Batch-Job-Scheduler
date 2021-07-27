@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validate_Batch_Size</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+				RecordType.DeveloperName == 'Batchable',
+				OR
+(
+Batch_Size__c &lt; 1,
+Batch_Size__c &gt; 2000
+))</errorConditionFormula>
+    <errorDisplayField>Batch_Size__c</errorDisplayField>
+    <errorMessage>Batch size must be between 1 and 2,000.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Frequency_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Frequency Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Hourly</fullName>
+                <default>false</default>
+                <label>Hourly</label>
+            </value>
+            <value>
+                <fullName>Daily</fullName>
+                <default>true</default>
+                <label>Daily</label>
+            </value>
+            <value>
+                <fullName>Weekly</fullName>
+                <default>false</default>
+                <label>Weekly</label>
+            </value>
+            <value>
+                <fullName>Monthly</fullName>
+                <default>false</default>
+                <label>Monthly</label>
+            </value>
+            <value>
+                <fullName>Yearly</fullName>
+                <default>false</default>
+                <label>Yearly</label>
+            </value>
+            <value>
+                <fullName>12 Hourly</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>12 Hourly</label>
+            </value>
+            <value>
+                <fullName>15Minutes</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>15 Minutes</label>
+            </value>
+            <value>
+                <fullName>2 Hourly</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>2 Hourly</label>
+            </value>
+            <value>
+                <fullName>2 Monthly</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>2 Monthly</label>
+            </value>
+            <value>
+                <fullName>2 Weekly</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>2 Weekly</label>
+            </value>
+            <value>
+                <fullName>3 Hourly</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>3 Hourly</label>
+            </value>
+            <value>
+                <fullName>3 Weekly</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>3 Weekly</label>
+            </value>
+            <value>
+                <fullName>30Minutes</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>30 Minutes</label>
+            </value>
+            <value>
+                <fullName>4 Hourly</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>4 Hourly</label>
+            </value>
+            <value>
+                <fullName>4 Weekly</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>4 Weekly</label>
+            </value>
+            <value>
+                <fullName>6 Hourly</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>6 Hourly</label>
+            </value>
+            <value>
+                <fullName>6 Monthly</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>6 Monthly</label>
+            </value>
+            <value>
+                <fullName>Quarterly</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Quarterly</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
