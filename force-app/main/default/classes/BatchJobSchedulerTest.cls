@@ -22,17 +22,6 @@ OR OTHER DEALINGS IN THE SOFTWARE.
 
 @isTest
 public class BatchJobSchedulerTest {
-    public static final Id BATCH_APEX_JOB_RTID_BATCHABLE = Application.RecordTypes.byDeveloperName(
-            'Batch_Apex_Job__c',
-            'Batchable'
-        )
-        .Id;
-    public static final Id BATCH_APEX_JOB_RTID_QUEUEABLE = Application.RecordTypes.byDeveloperName(
-            'Batch_Apex_Job__c',
-            'Queueable'
-        )
-        .Id;
-
     @testSetup
     static void setup() {
         Batch_Job_Schedule__c sch = new Batch_Job_Schedule__c();
@@ -47,28 +36,28 @@ public class BatchJobSchedulerTest {
             Batch_Class_Name__c = 'TestBatchJob1',
             Batch_Group__c = '1',
             Enabled__c = true,
-            RecordTypeId = BATCH_APEX_JOB_RTID_BATCHABLE
+            RecordTypeId = GlobalConstants.JOB_RECORD_TYPE_BATCHABLE
         );
         Batch_Apex_Job__c batchJob2 = new Batch_Apex_Job__c(
             Batch_Job_Schedule__c = sch.Id,
             Batch_Class_Name__c = 'TestBatchJob2',
             Batch_Group__c = '1',
             Enabled__c = true,
-            RecordTypeId = BATCH_APEX_JOB_RTID_BATCHABLE
+            RecordTypeId = GlobalConstants.JOB_RECORD_TYPE_BATCHABLE
         );
         Batch_Apex_Job__c batchJob3 = new Batch_Apex_Job__c(
             Batch_Job_Schedule__c = sch.Id,
             Batch_Class_Name__c = 'TestBatchJob3',
             Batch_Group__c = '2',
             Enabled__c = true,
-            RecordTypeId = BATCH_APEX_JOB_RTID_BATCHABLE
+            RecordTypeId = GlobalConstants.JOB_RECORD_TYPE_BATCHABLE
         );
         Batch_Apex_Job__c queueableJob1 = new Batch_Apex_Job__c(
             Batch_Job_Schedule__c = sch.Id,
             Batch_Class_Name__c = 'testqueueable',
             Batch_Group__c = '2',
             Enabled__c = true,
-            RecordTypeId = BATCH_APEX_JOB_RTID_QUEUEABLE
+            RecordTypeId = GlobalConstants.JOB_RECORD_TYPE_QUEUEABLE
         );
 
         insert new List<Batch_Apex_Job__c>{ batchJob1, batchJob2, batchJob3, queueableJob1 };
@@ -135,7 +124,7 @@ public class BatchJobSchedulerTest {
             Batch_Class_Name__c = 'testqueueable',
             Batch_Group__c = '3',
             Enabled__c = true,
-            RecordTypeId = BATCH_APEX_JOB_RTID_QUEUEABLE
+            RecordTypeId = GlobalConstants.JOB_RECORD_TYPE_QUEUEABLE
         );
         batchJobs.add(qAbleNewGroup);
         upsert batchJobs;
@@ -175,7 +164,7 @@ public class BatchJobSchedulerTest {
             Batch_Class_Name__c = 'testqueueable',
             Batch_Group__c = '3',
             Enabled__c = true,
-            RecordTypeId = BATCH_APEX_JOB_RTID_QUEUEABLE
+            RecordTypeId = GlobalConstants.JOB_RECORD_TYPE_QUEUEABLE
         );
         batchJobs.add(qAbleNewGroup);
         upsert batchJobs;

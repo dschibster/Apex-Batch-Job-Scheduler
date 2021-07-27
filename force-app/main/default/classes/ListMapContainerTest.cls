@@ -3,7 +3,7 @@ public with sharing class ListMapContainerTest {
     @IsTest
     static void testTwoContainersWithDifferentSObjectTypes() {
         ListMapContainer mapContact = new ListMapContainer(Contact.SObjectType);
-        ListMapContainer mapContract = new ListMapContainer(Contract__c.SObjectType);
+        ListMapContainer mapCase = new ListMapContainer(Case.SObjectType);
 
         Contact newContact = new Contact(LastName = 'test');
         Contact newContact2 = new Contact(LastName = 'test2');
@@ -11,11 +11,11 @@ public with sharing class ListMapContainerTest {
         mapContact.addToMap('accountId1', newContact);
         mapContact.addToMap('accountId2', newContact2);
 
-        Contract__c cont = new Contract__c(Name = 'ppatest');
-        Contract__c cont2 = new Contract__c(Name = 'ppa2test2');
+        Case cas = new Case(Subject = 'ppatest');
+        Case cas2 = new Case(Subject = 'ppa2test2');
 
-        mapContract.addToMap('accountId1', cont);
-        mapContract.addToMap('accountId1', cont2);
+        mapCase.addToMap('accountId1', cas);
+        mapCase.addToMap('accountId1', cas2);
 
         List<Contact> contactListTest = new List<Contact>{
                 newContact
@@ -23,16 +23,16 @@ public with sharing class ListMapContainerTest {
         List<Contact> contactListTest2 = new List<Contact>{
                 newContact2
         };
-        List<Contract__c> contractListTest = new List<Contract__c>{
-                cont, cont2
+        List<Case> caseListTest = new List<Case>{
+                cas, cas2
         };
 
         System.assertEquals(new Map<String, List<Contact>>{
                 'accountId1' => contactListTest, 'accountId2' => contactListTest2
         }, mapContact.getMap());
-        System.assertEquals(new Map<String, List<Contract__c>>{
-                'accountId1' => contractListTest
-        }, mapContract.getMap());
+        System.assertEquals(new Map<String, List<Case>>{
+                'accountId1' => caseListTest
+        }, mapCase.getMap());
     }
 
     @IsTest

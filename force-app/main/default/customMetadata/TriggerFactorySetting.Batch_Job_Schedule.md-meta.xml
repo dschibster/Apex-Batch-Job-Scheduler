@@ -7,7 +7,7 @@
         <value xsi:type="xsd:string">BatchJobScheduleHandler</value>
     </values>
     <values>
-        <field>ObjectName__c</field>
+        <field>SObjectName__c</field>
         <value xsi:nil="true"/>
     </values>
     <values>

@@ -1,7 +1,7 @@
 {
   "orgName": "dschib company",
   "edition": "Developer",
-  "features": ["EnableSetPasswordInApi"],
+  "features": ["EnableSetPasswordInApi","MultiCurrency"],
   "settings": {
     "lightningExperienceSettings": {
       "enableS1DesktopEnabled": true

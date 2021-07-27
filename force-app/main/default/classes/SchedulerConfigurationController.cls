@@ -141,11 +141,11 @@ public with sharing class SchedulerConfigurationController {
         };
 
         // Obtaining the field name/token map for the Batch_Job_Schedule__c object
-        fflib_SObjectDescribe batchJobDescribe = fflib_SObjectDescribe.getDescribe('Batch_Job_Schedule__c');
+        Map<String, Schema.SObjectField> fieldMap = Schema.SObjectType.Batch_Job_Schedule__c.fields.getMap();
         //System.debug('@@@fieldMap = ' + fieldMap);
         for (String fieldToCheck : batchJobScheduleUpdateFields) {
             // Check if the user has read access on the each field
-            if (!batchJobDescribe.getField(fieldToCheck).getDescribe().isUpdateable()) {
+            if (!fieldMap.get(fieldToCheck).getDescribe().isUpdateable()) {
                 //System.debug('@@@fieldToCheck = ' + fieldToCheck);
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.FATAL, 'Insufficient access'));
                 return false;

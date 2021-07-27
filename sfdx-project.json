@@ -1,12 +1,26 @@
 {
-  "packageDirectories": [
-    {
-      "path": "force-app",
-      "default": true
+    "packageDirectories": [
+  
+        {
+            "path": "force-app",
+            "package": "sfdx-batch-scheduler-framework",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": true,
+            "branch" : "master",
+            "dependencies" : [
+              {
+                "package" : "Mindsquare Trigger Framework - 0.1.2"
+              }
+            ]
+        }
+    ],
+    "name": "sfdx-batch-scheduler-framework",
+    "namespace": "",
+    "sfdcLoginUrl": "https://login.salesforce.com",
+    "sourceApiVersion": "52.0",
+    "packageAliases": {
+        "sfdx-batch-scheduler-framework": "0Ho09000000sY5sCAE",
+        "Mindsquare Trigger Framework - 0.1.2" : "04t09000000iXsQAAU"
     }
-  ],
-  "name": "sfdx-batch-scheduler-framework",
-  "namespace": "",
-  "sfdcLoginUrl": "https://login.salesforce.com",
-  "sourceApiVersion": "52.0"
 }
