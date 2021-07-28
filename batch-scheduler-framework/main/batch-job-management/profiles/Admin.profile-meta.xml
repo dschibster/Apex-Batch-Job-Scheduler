@@ -3,7 +3,7 @@
     <applicationVisibilities>
         <application>Batch_Job_Scheduler</application>
         <default>false</default>
-        <visible>false</visible>
+        <visible>true</visible>
     </applicationVisibilities>
     <classAccesses>
         <apexClass>BatchJobBase</apexClass>

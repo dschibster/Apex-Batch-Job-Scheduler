@@ -4,26 +4,16 @@
         <headerColor>#0070D2</headerColor>
         <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
     </brand>
+    <description>Schedule your Batch Jobs form within this centralized App</description>
     <formFactors>Small</formFactors>
     <formFactors>Large</formFactors>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
     <label>Batch Job Scheduler</label>
-    <navType>Console</navType>
+    <navType>Standard</navType>
     <tabs>Batch_Job_Scheduler_Configuration</tabs>
     <tabs>Batch_Job_Schedule__c</tabs>
     <tabs>Batch_Job_Log__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Batch_Job_Scheduler_UtilityBar</utilityBar>
-    <workspaceConfig>
-        <mappings>
-            <tab>Batch_Job_Log__c</tab>
-        </mappings>
-        <mappings>
-            <tab>Batch_Job_Schedule__c</tab>
-        </mappings>
-        <mappings>
-            <tab>Batch_Job_Scheduler_Configuration</tab>
-        </mappings>
-    </workspaceConfig>
 </CustomApplication>
