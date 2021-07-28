@@ -23,14 +23,6 @@ private class SchedulerConfigurationControllerTest {
         sch3.Preferred_Start_Minute__c = '4';
 
         insert new List<Batch_Job_Schedule__c>{ sch1, sch2, sch3 };
-        Id myUserId = UserInfo.getUserId();
-
-        User testUser = [SELECT Id FROM User WHERE isActive = TRUE AND Profile.Name LIKE '%Administrator%' AND Id != :UserInfo.getUserId() LIMIT 1];
-        System.runAs(testUser) {
-            PermissionSet ps = [SELECT Id FROM PermissionSet WHERE Name = 'Batch_Job_Scheduler' LIMIT 1];
-            PermissionSetAssignment psa = new PermissionSetAssignment(AssigneeId = myUserId, PermissionSetId = ps.Id);
-            Database.insert(psa, false); //There will be errors where there already is a PermSetAssignment on the Target Org. But for fresh Deployments on Fresh Orgs this is essential.
-        }
     }
 
     @isTest
