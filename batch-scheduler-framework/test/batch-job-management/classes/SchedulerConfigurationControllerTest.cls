@@ -40,7 +40,7 @@ private class SchedulerConfigurationControllerTest {
 
         SchedulerConfigurationController controller = new SchedulerConfigurationController();
 
-        System.assertEquals(3, controller.scheduledApexJobs.size());
+        System.assertEquals(3, controller.scheduledApexJobs.size(), 'The three Schedules were not found correctly');
     }
 
     @isTest
@@ -59,7 +59,7 @@ private class SchedulerConfigurationControllerTest {
 
         Test.stopTest();
 
-        System.assertEquals(3, controller.scheduledApexJobs.size());
-        System.assertEquals(false, controller.scheduledApexJobs[0].scheduled);
+        System.assertEquals(3, controller.scheduledApexJobs.size(), 'There are no 3 Scheduled Apex Jobs');
+        System.assertEquals(false, controller.scheduledApexJobs[0].scheduled, 'Scheduled Apex Job was not set to scheduled');
     }
 }

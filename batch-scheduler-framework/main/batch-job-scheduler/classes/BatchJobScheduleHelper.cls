@@ -68,7 +68,9 @@ public class BatchJobScheduleHelper {
                 sch.RecordTypeId == RecordTypeCache.SCHEDULER_RECORD_TYPE_EXISTING_SCHEDULED_JOB_JOB &&
                 sch.Cron_Trigger_Id__c != null
             )
-                cronTriggerIds.add(sch.Cron_Trigger_Id__c);
+                {
+                    cronTriggerIds.add(sch.Cron_Trigger_Id__c);
+                }
         }
 
         Set<Id> cronTrigggerIdSet = getCronTrigggerIdSet(cronTriggerIds);
@@ -91,7 +93,9 @@ public class BatchJobScheduleHelper {
             FROM CronTrigger
             WHERE CronJobDetail.JobType = :SCHEDULED_APEX AND Id IN :cronTriggerIds
         ])
-            result.add(cron.Id);
+            {
+                result.add(cron.Id);
+            }
 
         return result;
     }

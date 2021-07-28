@@ -17,10 +17,10 @@ public class BatchJobSchedulerTest {
         batchJobScheduler.run(cronTriggerId);
 
         List<Account> accounts = [SELECT Id, Type FROM Account];
-        System.assertEquals(3, accounts.size());
-        System.assertEquals('_BJS_Testing_', accounts[0].Type);
-        System.assertEquals('_BJS_Testing_', accounts[1].Type);
-        System.assertEquals('_BJS_Testing_', accounts[2].Type);
+        System.assertEquals(3, accounts.size(), 'The Account were not found');
+        System.assertEquals('_BJS_Testing_', accounts[0].Type, 'The Type was not switched for Account 1');
+        System.assertEquals('_BJS_Testing_', accounts[1].Type, 'The Type was not switched for Account 2');
+        System.assertEquals('_BJS_Testing_', accounts[2].Type, 'The Type was not switched for Account 3');
     }
 
     @isTest
@@ -36,10 +36,10 @@ public class BatchJobSchedulerTest {
         batchJobScheduler.executeNextJob();
 
         List<Account> accounts = [SELECT Id, Type FROM Account];
-        System.assertEquals(3, accounts.size());
-        System.assertEquals('_BJS_Testing_', accounts[0].Type);
-        System.assertEquals('_BJS_Testing_', accounts[1].Type);
-        System.assertEquals('_BJS_Testing_', accounts[2].Type);
+        System.assertEquals(3, accounts.size(), 'The Account were not found');
+        System.assertEquals('_BJS_Testing_', accounts[0].Type, 'The Type was not switched for Account 1');
+        System.assertEquals('_BJS_Testing_', accounts[1].Type, 'The Type was not switched for Account 2');
+        System.assertEquals('_BJS_Testing_', accounts[2].Type, 'The Type was not switched for Account 3');
     }
 
     @isTest static void testConstructionOfJobMap(){
@@ -71,7 +71,7 @@ public class BatchJobSchedulerTest {
 
         BatchJobScheduler batchJobScheduler = new BatchJobScheduler();
         batchJobScheduler.batchJobs = batchJobScheduler.loadActiveBatchJobs(cronTriggerId);
-        System.assertEquals(new Set<Integer>(new List<Integer>{1,2,3}), batchJobScheduler.isEnabledMap.keySet());
+        System.assertEquals(new Set<Integer>(new List<Integer>{1,2,3}), batchJobScheduler.isEnabledMap.keySet(), 'The keySet of the enablede Batch Job Groups is incomplete');
         System.assert(batchJobScheduler.isEnabledMap.get(1), 'Batch Jobs in Group 1 were seen as disabled');
         System.assert(!batchJobScheduler.isEnabledMap.get(2), 'Batch Jobs in Group 2 were seen as enabled');
         System.assert(batchJobScheduler.isEnabledMap.get(3), 'Batch Jobs in Group 3 were seen as disabled');
@@ -111,7 +111,7 @@ public class BatchJobSchedulerTest {
         batchJobScheduler.executeNextJob();
 
         System.assertEquals(3,batchJobScheduler.index, 'Disabled index 2 was not skipped');
-        System.assert(!batchJobScheduler.batchJobs.containsKey('2'));
+        System.assert(!batchJobScheduler.batchJobs.containsKey('2'), 'Batch Job Group 2 was mistakenly found');
     }
 
     @isTest
@@ -119,7 +119,7 @@ public class BatchJobSchedulerTest {
         BatchJobHelper.logBatchJob('batchJobName', System.now(), 'errorMessages');
 
         List<Batch_Job_Log__c> logs = [SELECT Id FROM Batch_Job_Log__c];
-        System.assertEquals(1, logs.size());
+        System.assertEquals(1, logs.size(), 'Log wasn\'t created');
     }
 
     @isTest
@@ -131,10 +131,10 @@ public class BatchJobSchedulerTest {
         Test.stopTest();
 
         List<Account> accounts = [SELECT Id, Type FROM Account];
-        System.assertEquals(3, accounts.size());
-        System.assertEquals('Prospect', accounts[0].Type);
-        System.assertEquals('Prospect', accounts[1].Type);
-        System.assertEquals('Prospect', accounts[2].Type);
+        System.assertEquals(3, accounts.size(), 'The Account were not found');
+        System.assertEquals('Prospect', accounts[0].Type, 'The Type was not switched for Account 1');
+        System.assertEquals('Prospect', accounts[1].Type, 'The Type was not switched for Account 2');
+        System.assertEquals('Prospect', accounts[2].Type, 'The Type was not switched for Account 3');
     }
 
     @isTest
@@ -146,10 +146,10 @@ public class BatchJobSchedulerTest {
         Test.stopTest();
 
         List<Account> accounts = [SELECT Id, Type FROM Account];
-        System.assertEquals(3, accounts.size());
-        System.assertEquals('Prospect', accounts[0].Type);
-        System.assertEquals('Prospect', accounts[1].Type);
-        System.assertEquals('Prospect', accounts[2].Type);
+        System.assertEquals(3, accounts.size(), 'The Account were not found');
+        System.assertEquals('Prospect', accounts[0].Type, 'The Type was not switched for Account 1');
+        System.assertEquals('Prospect', accounts[1].Type, 'The Type was not switched for Account 2');
+        System.assertEquals('Prospect', accounts[2].Type, 'The Type was not switched for Account 3');
     }
 
     @isTest
@@ -161,9 +161,9 @@ public class BatchJobSchedulerTest {
         Test.stopTest();
 
         List<Account> accounts = [SELECT Id, Type FROM Account];
-        System.assertEquals(3, accounts.size());
-        System.assertEquals('Prospect', accounts[0].Type);
-        System.assertEquals('Prospect', accounts[1].Type);
-        System.assertEquals('Prospect', accounts[2].Type);
+        System.assertEquals(3, accounts.size(), 'The Account were not found');
+        System.assertEquals('Prospect', accounts[0].Type, 'The Type was not switched for Account 1');
+        System.assertEquals('Prospect', accounts[1].Type, 'The Type was not switched for Account 2');
+        System.assertEquals('Prospect', accounts[2].Type, 'The Type was not switched for Account 3');
     }
 }
