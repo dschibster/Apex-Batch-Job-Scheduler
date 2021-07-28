@@ -1,16 +1,12 @@
 {
     "packageDirectories": [
-  
-        {
-            "path": "force-app",
-            "default": true
-        },
+
         {
             "path": "batch-scheduler-framework",
             "package": "sfdx-batch-scheduler-framework",
             "versionName": "ver 0.1",
             "versionNumber": "0.1.0.NEXT",
-            "default": false,
+            "default": true,
             "branch" : "master",
             "dependencies" : [
               {

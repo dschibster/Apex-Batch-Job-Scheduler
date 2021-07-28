@@ -1,7 +1,7 @@
 public inherited sharing class RecordTypeCache {
     
-    private static Map<String, Schema.RecordTypeInfo> rtInfosBatchJobSchedule = Schema.SObjectType.Batch_Job_Schedule__c.getRecordTypeInfosByName();
-    private static Map<String, Schema.RecordTypeInfo> rtInfosBatchJobApexJob = Schema.SObjectType.Batch_Job_Schedule__c.getRecordTypeInfosByName();
+    private static Map<String, Schema.RecordTypeInfo> rtInfosBatchJobSchedule = Schema.SObjectType.Batch_Job_Schedule__c.getRecordTypeInfosByDeveloperName();
+    private static Map<String, Schema.RecordTypeInfo> rtInfosBatchJobApexJob = Schema.SObjectType.Batch_Apex_Job__c.getRecordTypeInfosByDeveloperName();
     public static final Id SCHEDULER_RECORD_TYPE_HOURLY_JOB  = rtInfosBatchJobSchedule.get('Hourly_Job').getRecordTypeId();
     public static final Id SCHEDULER_RECORD_TYPE_DAILY_JOB   = rtInfosBatchJobSchedule.get('Daily_Job').getRecordTypeId();
     public static final Id SCHEDULER_RECORD_TYPE_WEEKLY_JOB  = rtInfosBatchJobSchedule.get('Weekly_Job').getRecordTypeId();
