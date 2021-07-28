@@ -7,7 +7,7 @@
 <span>
 <a href="https://githubsfdeploy.herokuapp.com">
   <img alt="Deploy to Salesforce"
-       src="https://github.com/dschibster/sfdx-batch-scheduler-framework//blob/master/resources/deploy_unmanaged.png">
+       src="https://github.com/dschibster/sfdx-batch-scheduler-framework/blob/master/resources/deploy_unmanaged.png">
 </a>
 </span>
 <div>
