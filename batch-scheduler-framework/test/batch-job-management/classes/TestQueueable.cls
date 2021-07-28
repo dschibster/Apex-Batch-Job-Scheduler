@@ -1,5 +1,5 @@
 @isTest
-public with sharing class testqueueable extends BatchJobBase implements Queueable{
+public with sharing class TestQueueable extends BatchJobBase implements Queueable{
     public testqueueable() {
 
     }
