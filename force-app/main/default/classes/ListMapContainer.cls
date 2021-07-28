@@ -41,4 +41,8 @@ public class ListMapContainer {
     public List<SObject> get(String key) {
         return this.objectMap.get(key);
     }
+
+    public Set<String> keySet() {
+        return this.objectMap.keySet();
+    }
 }

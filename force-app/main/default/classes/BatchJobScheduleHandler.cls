@@ -13,4 +13,9 @@ public without sharing class BatchJobScheduleHandler extends TriggerHandlerExten
             helper.validateCronTriggers(Trigger.new);
         }
     }
+
+    public override void beforeDelete(SObject oldObj){
+        Batch_Job_Schedule__c oldSchedule = (Batch_Job_Schedule__c) oldObj;
+        helper.preventDeletionWithActiveCronTrigger(oldSchedule);
+    }
 }

@@ -1,0 +1,1 @@
+<apex:page standardController="Batch_Job_Schedule__c" extensions="RunBatchJobScheduleController" action="{!runSchedule}" />
