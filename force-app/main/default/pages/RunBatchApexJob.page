@@ -1,0 +1,1 @@
+<apex:page standardController="Batch_Apex_Job__c" extensions="RunBatchApexJobController" action="{!runJob}" />

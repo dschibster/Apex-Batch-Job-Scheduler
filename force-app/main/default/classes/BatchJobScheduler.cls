@@ -29,17 +29,21 @@ History:       2015-11-19   Ian Huang   Created.
 ------------------------------------------------------------*/
 global with sharing class BatchJobScheduler implements Schedulable {
     //Batch jobs in parallel run batches
-    @TestVisible private ListMapContainer batchJobs;
+    public ListMapContainer batchJobs;
     @TestVisible private Map<Integer,Boolean> isEnabledMap;
     @TestVisible private Integer index;
 
     global void execute(SchedulableContext sc) {
-        executeJobs(sc.getTriggerId());
+        run(sc.getTriggerId());
     }
 
     //Execute jobs from the beginning
-    public void executeJobs(Id cronTriggerId) {
+    public void run(Id cronTriggerId) {
         batchJobs = loadActiveBatchJobs(cronTriggerId);
+        executeJobs();
+    }
+
+    public void executeJobs(){
         if (batchJobs.getMap().keySet().isEmpty()) {
             return;
         }
@@ -71,9 +75,12 @@ global with sharing class BatchJobScheduler implements Schedulable {
         return result;
     }
 
+    public ListMapContainer loadActiveBatchJobs(Id cronTriggerId) {
+        Batch_Job_Schedule__c schedule = [SELECT Id FROM Batch_Job_Schedule__c WHERE Cron_Trigger_Id__c = :cronTriggerId];
+        return loadActiveBatchJobsById(schedule.Id);
+    }
     //load active batch jobs from Batch_Apex_Job__c, sort by Batch No and Batch Sequence
-    @TestVisible
-    private ListMapContainer loadActiveBatchJobs(Id cronTriggerId) {
+    public ListMapContainer loadActiveBatchJobsById(Id scheduleId) {
         ListMapContainer batchJobListMap = new ListMapContainer(Batch_Apex_Job__c.SObjectType);
         isEnabledMap = new Map<Integer, Boolean>();
 
@@ -88,7 +95,7 @@ global with sharing class BatchJobScheduler implements Schedulable {
                 Batch_Job_Schedule__c,
                 RecordType.DeveloperName
             FROM Batch_Apex_Job__c
-            WHERE Batch_Job_Schedule__r.Cron_Trigger_Id__c = :cronTriggerId
+            WHERE Batch_Job_Schedule__c = :scheduleId
             ORDER BY Batch_Group__c, CreatedDate
         ]) {
             if(!isEnabledMap.containsKey(Integer.valueOf(baj.Batch_Group__c))){
