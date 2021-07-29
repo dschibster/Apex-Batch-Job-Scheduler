@@ -4,8 +4,8 @@
         {
             "path": "batch-scheduler-framework",
             "package": "sfdx-batch-scheduler-framework",
-            "versionName": "ver 0.1",
-            "versionNumber": "0.1.0.NEXT",
+            "versionName": "ver 1.0",
+            "versionNumber": "1.0.0.NEXT",
             "default": true,
             "branch" : "master",
             "dependencies" : [

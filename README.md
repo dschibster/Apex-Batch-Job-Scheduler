@@ -1,6 +1,6 @@
 # Installation
 <div>
-<span><a href="https://login.salesforce.com/packaging/installPackage.apexp?p0=04t09000000iY15AAE">
+<span><a href="https://login.salesforce.com/packaging/installPackage.apexp?p0=04t09000000iYHqAAM">
   <img alt="Deploy to Salesforce"
        src="https://github.com/dschibster/sfdx-batch-scheduler-framework/blob/master/resources/deploy_unlocked.png">
 </a>
@@ -13,7 +13,7 @@
 <div>
 For your Sandbox:
   <div><span>
-    <a href="https://test.salesforce.com/packaging/installPackage.apexp?p0=04t09000000iY15AAE">
+    <a href="https://test.salesforce.com/packaging/installPackage.apexp?p0=04t09000000iYHqAAM">
   <img alt="Deploy to Salesforce"
        src="https://github.com/dschibster/ms-triggerframework/blob/master/resources/deploy_unlocked.png">
 </a></span><div>
