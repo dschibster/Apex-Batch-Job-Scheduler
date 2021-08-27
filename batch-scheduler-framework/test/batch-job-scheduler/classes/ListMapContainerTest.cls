@@ -1,3 +1,13 @@
+/**
+ * This class is part of the sfdx-batch-scheduler-framework package, released under the MIT license.
+ * 
+ * @description       : Test Class for ListMapContainer
+ * @author            : dschibster
+ * @group             : Scheduler
+ * @last modified on  : 2021-08-27
+ * @last modified by  : dschibster
+**/
+
 @IsTest
 public with sharing class ListMapContainerTest {
     @IsTest

@@ -1,3 +1,13 @@
+/**
+ * This class is part of the sfdx-batch-scheduler-framework package, released under the MIT license.
+ * 
+ * @description       : Apex Controller responsible for Running a Single Apex Job from the Related List.
+ * @author            : dschibster
+ * @group             : Batch Job Management
+ * @last modified on  : 2021-08-27
+ * @last modified by  : dschibster
+**/
+
 public with sharing class RunBatchApexJobController {
     BatchJobBase batchJobToRun;
     Batch_Apex_Job__c jobRecord;

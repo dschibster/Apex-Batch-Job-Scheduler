@@ -10,7 +10,7 @@
             "branch" : "master",
             "dependencies" : [
               {
-                "package" : "Mindsquare Trigger Framework - 0.1.2"
+                "package" : "SFDX Trigger Factory - 1.0.0"
               }
             ]
         }
@@ -21,6 +21,6 @@
     "sourceApiVersion": "52.0",
     "packageAliases": {
         "sfdx-batch-scheduler-framework": "0Ho09000000sY5sCAE",
-        "Mindsquare Trigger Framework - 0.1.2" : "04t09000000iXsQAAU"
+        "SFDX Trigger Factory - 1.0.0" : "04t09000000ibshAAA"
     }
 }
