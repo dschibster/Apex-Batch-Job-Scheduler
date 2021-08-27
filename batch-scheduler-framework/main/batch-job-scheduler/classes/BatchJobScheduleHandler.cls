@@ -1,3 +1,13 @@
+/**
+ * This class is part of the sfdx-batch-scheduler-framework package, released under the MIT license.
+ * 
+ * @description       : Trigger Factory Handler for Batch_Job_Schedule__c
+ * @author            : dschibster
+ * @group             : Scheduler
+ * @last modified on  : 2021-08-27
+ * @last modified by  : dschibster
+**/
+
 public without sharing class BatchJobScheduleHandler extends TriggerHandlerExtension {
     public static BatchJobScheduleHelper helper = BatchJobScheduleHelper.getInstance();
 

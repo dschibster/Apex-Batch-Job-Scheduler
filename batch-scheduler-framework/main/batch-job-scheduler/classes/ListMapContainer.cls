@@ -1,3 +1,13 @@
+/**
+ * This class is part of the sfdx-batch-scheduler-framework package, released under the MIT license.
+ * 
+ * @description       : Helper class that Groups encapsulates Map<String,List<SObject>> for a generic SObject.
+ * @author            : dschibster
+ * @group             : Scheduler
+ * @last modified on  : 2021-08-27
+ * @last modified by  : dschibster
+**/
+
 public class ListMapContainer {
 
     Map<String, List<SObject>> objectMap;

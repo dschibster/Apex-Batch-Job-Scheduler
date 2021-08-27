@@ -1,3 +1,13 @@
+/**
+ * This class is part of the sfdx-batch-scheduler-framework package, released under the MIT license.
+ * 
+ * @description       : Base Class responsible for Groupability and Batchability on a generic basis
+ * @author            : dschibster
+ * @group             : 
+ * @last modified on  : 2021-08-27
+ * @last modified by  : dschibster
+**/
+
 @isTest
 public with sharing class RunBatchApexJobControllerTest {
 
