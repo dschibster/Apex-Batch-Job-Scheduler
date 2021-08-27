@@ -1,6 +1,7 @@
 MIT License
 
 Copyright (c) 2021 Dennis Grzyb
+
 Original Code snippets Copyright (c) 2015 Ian Huang Salesforce
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
