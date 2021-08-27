@@ -21,6 +21,7 @@
     "sourceApiVersion": "52.0",
     "packageAliases": {
         "sfdx-batch-scheduler-framework": "0Ho09000000sY5sCAE",
-        "SFDX Trigger Factory - 1.0.0" : "04t09000000ibshAAA"
+        "SFDX Trigger Factory - 1.0.0" : "04t09000000ibshAAA",
+        "sfdx-batch-scheduler-framework@1.0.0.0" : "04t09000000ibsmAAA"
     }
 }
