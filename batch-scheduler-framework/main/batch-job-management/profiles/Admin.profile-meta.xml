@@ -66,10 +66,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>ScheduledApexJob</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>SchedulerConfigurationController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
