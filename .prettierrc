@@ -1,5 +1,7 @@
 {
   "trailingComma": "none",
+  "tabWidth" : 4,
+  "printWidth": 160,
   "overrides": [
     {
       "files": "**/lwc/**/*.html",
