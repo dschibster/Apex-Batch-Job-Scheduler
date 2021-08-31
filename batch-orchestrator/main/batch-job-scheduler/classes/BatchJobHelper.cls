@@ -16,17 +16,16 @@
  * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
- * OR OTHER DEALINGS IN THE SOFTWARE. 
- * 
+ * OR OTHER DEALINGS IN THE SOFTWARE.
+ *
  * @description       : Called by BatchJobBase after finishing the Batch run to log the result.
  * @author            : ianhuang
  * @group             : Scheduler
  * @last modified on  : 2021-08-27
  * @last modified by  : dschibster
-**/
+ **/
 
 public inherited sharing class BatchJobHelper {
-    
     public static void logBatchJob(String batchJobName, Id asyncJobId, Id scheduleId, Id jobId) {
         logBatchJob(batchJobName, asyncJobId, '', scheduleId, jobId);
     }
@@ -34,15 +33,7 @@ public inherited sharing class BatchJobHelper {
     //Log batch job exection result
     public static void logBatchJob(String batchJobName, Id asyncJobId, String summary, Id scheduleId, Id jobId) {
         AsyncApexJob job = [
-            SELECT
-                Id,
-                Status,
-                NumberOfErrors,
-                JobItemsProcessed,
-                TotalJobItems,
-                CompletedDate,
-                CreatedBy.Email,
-                ExtendedStatus
+            SELECT Id, Status, NumberOfErrors, JobItemsProcessed, TotalJobItems, CompletedDate, CreatedBy.Email, ExtendedStatus
             FROM AsyncApexJob
             WHERE Id = :asyncJobId
         ];
@@ -59,8 +50,7 @@ public inherited sharing class BatchJobHelper {
                 Status__c = job.Status,
                 Batches_Processed__c = job.JobItemsProcessed,
                 Number_of_Errors__c = job.NumberOfErrors,
-                Execution_Result__c = (String.isNotBlank(executeResult) ? executeResult : '') +
-                    (String.isNotBlank(summary) ? '\n' + summary : '')
+                Execution_Result__c = (String.isNotBlank(executeResult) ? executeResult : '') + (String.isNotBlank(summary) ? '\n' + summary : '')
             );
             insert bjl;
         } catch (Exception ex) {

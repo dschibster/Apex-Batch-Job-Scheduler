@@ -6,12 +6,12 @@
  * @group             : Scheduler
  * @last modified on  : 2021-08-27
  * @last modified by  : dschibster
-**/
+ **/
 
 @isTest
 public with sharing class BatchJobBaseTest {
-    
-    @isTest static void testFinalizerInterfaceFired(){
+    @isTest
+    static void testFinalizerInterfaceFired() {
         Test.startTest();
         BatchJobBase emptyQueueable = (BatchJobBase) new testQueueable();
         emptyQueueable.jobType = 'Queueable';
@@ -20,5 +20,4 @@ public with sharing class BatchJobBaseTest {
 
         System.assert(![SELECT Id FROM Batch_Job_Log__c].isEmpty(), 'Finalizer has not created a Batch log.');
     }
-    
 }

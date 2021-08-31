@@ -16,16 +16,16 @@
  * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
- * OR OTHER DEALINGS IN THE SOFTWARE. 
- * 
+ * OR OTHER DEALINGS IN THE SOFTWARE.
+ *
  * @description       : Base Class responsible for Groupability and Batchability on a generic basis
  * @author            : ianhuang
  * @group             : Scheduler
  * @last modified on  : 2021-08-27
  * @last modified by  : dschibster
-**/
+ **/
 
-public virtual with sharing class BatchJobBase implements Finalizer{
+public virtual with sharing class BatchJobBase implements Finalizer {
     public Boolean executeNextJob = false;
     public BatchJobScheduler batchJobScheduler;
     public Id scheduleId;
@@ -35,13 +35,13 @@ public virtual with sharing class BatchJobBase implements Finalizer{
     public virtual void finishBatch(Id asyncJobId) {
         String className = String.valueOf(this).split(':')[0];
         BatchJobHelper.logBatchJob(className, asyncJobId, scheduleId, jobId);
-        
+
         if (executeNextJob) {
             batchJobScheduler.ExecuteNextJob();
         }
     }
 
-    public void execute(FinalizerContext ctx){
+    public void execute(FinalizerContext ctx) {
         finishBatch(ctx.getAsyncApexJobId());
     }
 

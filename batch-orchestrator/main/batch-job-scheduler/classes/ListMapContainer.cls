@@ -1,15 +1,14 @@
 /**
  * This class is part of the sfdx-batch-scheduler-framework package, released under the MIT license.
- * 
+ *
  * @description       : Helper class that Groups encapsulates Map<String,List<SObject>> for a generic SObject.
  * @author            : dschibster
  * @group             : Scheduler
  * @last modified on  : 2021-08-27
  * @last modified by  : dschibster
-**/
+ **/
 
 public class ListMapContainer {
-
     Map<String, List<SObject>> objectMap;
     SObjectType sobjectType;
     String sobjectTypeString;
@@ -21,7 +20,6 @@ public class ListMapContainer {
         String typedMapString = 'Map<String,List<' + sobjectTypeString + '>>';
         Type mapType = Type.forName(typedMapString);
         objectMap = (Map<String, List<SObject>>) mapType.newInstance();
-
     }
 
     public Map<String, List<SObject>> getMap() {
