@@ -2,8 +2,8 @@
     "packageDirectories": [
 
         {
-            "path": "batch-scheduler-framework",
-            "package": "sfdx-batch-scheduler-framework",
+            "path": "batch-orchestrator",
+            "package": "sfdx-batch-orchestrator",
             "versionName": "ver 1.0",
             "versionNumber": "1.0.0.NEXT",
             "default": true,
@@ -15,13 +15,13 @@
             ]
         }
     ],
-    "name": "sfdx-batch-scheduler-framework",
+    "name": "sfdx-batch-orchestrator",
     "namespace": "",
     "sfdcLoginUrl": "https://login.salesforce.com",
     "sourceApiVersion": "52.0",
     "packageAliases": {
-        "sfdx-batch-scheduler-framework": "0Ho09000000sY5sCAE",
+        "sfdx-batch-orchestrator": "0Ho09000000sY5sCAE",
         "SFDX Trigger Factory - 1.0.0" : "04t09000000ibshAAA",
-        "sfdx-batch-scheduler-framework@1.0.0.0" : "04t09000000ibsmAAA"
+        "sfdx-batch-orchestrator@1.0.0.0" : "04t09000000ibsmAAA"
     }
 }
