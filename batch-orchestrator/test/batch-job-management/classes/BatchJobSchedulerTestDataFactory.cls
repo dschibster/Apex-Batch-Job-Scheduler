@@ -56,4 +56,25 @@ public with sharing class BatchJobSchedulerTestDataFactory {
         Account account3 = new Account(Name = '__BatchJobSchedulerTest003', Type = '_BJS_Testing_');
         insert new List<Account>{ account1, account2, account3 };
     }
+
+    public static Batch_Job_Schedule__c createWeeklyBatchJobSchedule(){
+        Batch_Job_Schedule__c sch = new Batch_Job_Schedule__c();
+        sch.RecordTypeId = RecordTypeCache.SCHEDULER_RECORD_TYPE_WEEKLY_JOB;
+        sch.Name = 'Test Weekly Name 001';
+        sch.Preferred_Start_Week_Day__c = 'MON;TUE;WED';
+        sch.Preferred_Start_Hour__c = '3';
+        sch.Preferred_Start_Minute__c = '2';
+        return sch;
+    }
+
+    public static Batch_Apex_Job__c createBatchJob(Batch_Job_Schedule__c schedule){
+        Batch_Apex_Job__c batchJob = new Batch_Apex_Job__c(
+            Batch_Job_Schedule__c = schedule.Id,
+            Batch_Class_Name__c = 'TestBatchJob1',
+            Batch_Group__c = '1',
+            Enabled__c = true,
+            RecordTypeId = RecordTypeCache.JOB_RECORD_TYPE_BATCHABLE
+        );
+        return batchJob;
+    }
 }
