@@ -1,12 +1,12 @@
 /**
  * This class is part of the sfdx-batch-scheduler-framework package, released under the MIT license.
- * 
+ *
  * @description       : Test Class for ListMapContainer
  * @author            : dschibster
  * @group             : Scheduler
  * @last modified on  : 2021-08-27
  * @last modified by  : dschibster
-**/
+ **/
 
 @IsTest
 public with sharing class ListMapContainerTest {
@@ -27,22 +27,12 @@ public with sharing class ListMapContainerTest {
         mapCase.addToMap('accountId1', cas);
         mapCase.addToMap('accountId1', cas2);
 
-        List<Contact> contactListTest = new List<Contact>{
-                newContact
-        };
-        List<Contact> contactListTest2 = new List<Contact>{
-                newContact2
-        };
-        List<Case> caseListTest = new List<Case>{
-                cas, cas2
-        };
+        List<Contact> contactListTest = new List<Contact>{ newContact };
+        List<Contact> contactListTest2 = new List<Contact>{ newContact2 };
+        List<Case> caseListTest = new List<Case>{ cas, cas2 };
 
-        System.assertEquals(new Map<String, List<Contact>>{
-                'accountId1' => contactListTest, 'accountId2' => contactListTest2
-        }, mapContact.getMap());
-        System.assertEquals(new Map<String, List<Case>>{
-                'accountId1' => caseListTest
-        }, mapCase.getMap());
+        System.assertEquals(new Map<String, List<Contact>>{ 'accountId1' => contactListTest, 'accountId2' => contactListTest2 }, mapContact.getMap());
+        System.assertEquals(new Map<String, List<Case>>{ 'accountId1' => caseListTest }, mapCase.getMap());
     }
 
     @IsTest
@@ -69,8 +59,6 @@ public with sharing class ListMapContainerTest {
         Contact newCon = new Contact(LastName = 'Test1');
         mapContact.addToMap('test1', newCon);
 
-        System.assertEquals(new List<Contact>{
-                newCon
-        }, mapContact.get('test1'));
+        System.assertEquals(new List<Contact>{ newCon }, mapContact.get('test1'));
     }
 }
