@@ -64,7 +64,7 @@ public YourBatchJob(){
 }
 ```
 
-In the end, the last thing you need to do is call `super.finishBatch(ctx.getJobId())`
+In the end, the last thing you need to do is call `super.finishBatch(ctx.getJobId())` with `ctx` being the name of your Database.BatchableContext variable.
 **Future updates may require you to add addditional method calls to constructor or execute methods for logging purposes.**
 ### Queueables
 If you want to schedule a Queueable for one-off automations that do not need the Batchable interface, the Queueable needs to also extend `BatchJobBase`, but here the `execute()` method needs to include the following line first: `System.attachFinalizer(this);`.
