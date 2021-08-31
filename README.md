@@ -60,7 +60,7 @@ If you need parameter to be passed into your constructor to properly run your Jo
 
 ```
 public YourBatchJob(){
-  this(fetchStandardInitiatlValue());
+  this(fetchStandardInitialValue());
 }
 ```
 
