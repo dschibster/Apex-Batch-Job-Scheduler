@@ -1,8 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Batch_Job_Name__c</fullName>
     <description>Apex Batch Job class name</description>
-    <encryptionScheme>None</encryptionScheme>
     <externalId>false</externalId>
     <label>Batch Job Name</label>
     <length>80</length>

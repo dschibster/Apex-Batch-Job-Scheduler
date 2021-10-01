@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Batch_Apex_Job__c</fullName>
+    <fullName>BatchApexJobParent__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
-    <label>Batch Apex Job</label>
+    <label>Batch Apex Job (Parent)</label>
     <referenceTo>Batch_Apex_Job__c</referenceTo>
-    <relationshipLabel>Batch Job Logs</relationshipLabel>
-    <relationshipName>Batch_Job_Logs</relationshipName>
+    <relationshipLabel>Parent Apex Job Logs</relationshipLabel>
+    <relationshipName>Batch_Job_Logs1</relationshipName>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Lookup</type>

@@ -22,6 +22,14 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>BatchApexStatusEventHandler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BatchApexStatusEventHelper</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>BatchJobBase</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -237,6 +245,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Batch_Job_Log__c.AsyncApexJobId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Batch_Job_Log__c.BatchApexJobParent__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Batch_Job_Log__c.BatchJobScheduleParent__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
