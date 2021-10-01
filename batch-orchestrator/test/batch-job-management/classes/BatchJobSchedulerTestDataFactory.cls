@@ -1,5 +1,5 @@
 /**
- * This class is part of the sfdx-batch-scheduler-framework package, released under the MIT license.
+ * This class is part of the sfdx-batch-orchestrator package, released under the MIT license.
  *
  * @description       : Test Data Factory to create the correct Data for Test Cases
  * @author            : dschibster
@@ -55,7 +55,7 @@ public with sharing class BatchJobSchedulerTestDataFactory {
         insert new List<Account>{ account1, account2, account3 };
     }
 
-    public static Batch_Job_Schedule__c createWeeklyBatchJobSchedule(){
+    public static Batch_Job_Schedule__c createWeeklyBatchJobSchedule() {
         Batch_Job_Schedule__c sch = new Batch_Job_Schedule__c();
         sch.RecordTypeId = RecordTypeCache.SCHEDULER_RECORD_TYPE_WEEKLY_JOB;
         sch.Name = 'Test Weekly Name 001';
@@ -65,7 +65,7 @@ public with sharing class BatchJobSchedulerTestDataFactory {
         return sch;
     }
 
-    public static Batch_Apex_Job__c createBatchJob(Batch_Job_Schedule__c schedule){
+    public static Batch_Apex_Job__c createBatchJob(Batch_Job_Schedule__c schedule) {
         Batch_Apex_Job__c batchJob = new Batch_Apex_Job__c(
             Batch_Job_Schedule__c = schedule.Id,
             Batch_Class_Name__c = 'TestBatchJob1',

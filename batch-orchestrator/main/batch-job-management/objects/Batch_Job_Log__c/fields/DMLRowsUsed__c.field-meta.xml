@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Status__c</fullName>
+    <fullName>DMLRowsUsed__c</fullName>
     <externalId>false</externalId>
     <isFilteringDisabled>false</isFilteringDisabled>
     <isNameField>false</isNameField>
     <isSortingDisabled>false</isSortingDisabled>
-    <label>Status</label>
-    <length>255</length>
+    <label>DML Rows Used</label>
+    <precision>8</precision>
     <required>false</required>
-    <type>Text</type>
+    <scale>0</scale>
+    <type>Number</type>
     <unique>false</unique>
 </CustomField>

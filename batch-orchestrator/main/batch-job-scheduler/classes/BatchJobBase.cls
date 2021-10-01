@@ -25,23 +25,46 @@
  * @last modified by  : dschibster
  **/
 
-public virtual with sharing class BatchJobBase implements Finalizer {
+public virtual with sharing class BatchJobBase implements Finalizer, Database.RaisesPlatformEvents {
     public Boolean executeNextJob = false;
     public BatchJobScheduler batchJobScheduler;
     public Id scheduleId;
     public Id jobId;
     public String jobType;
+    private Boolean enhancedLoggingEnabled = false;
+    private String className;
+    private Id asyncJobId;
+
+    /*public virtual void writeParentLog(Id asyncApexJobId) {
+        this.asyncJobId = asyncApexJobId;
+        this.enhancedLoggingEnabled = true;
+        this.className = String.valueOf(this).split(':')[0];
+
+        BatchJobLogger.logStart(className, asyncJobId, scheduleId, jobId);
+    }
+
+    public virtual void writeChildLog(List<SObject> chunkScope) {
+        BatchJobLogge.logExecute();
+    }
+
+    public virtual void writeQueueableLog() {
+        BatchJobLogger.logFinish();
+    }*/
 
     public virtual void finishBatch(Id asyncJobId) {
-        String className = String.valueOf(this).split(':')[0];
-        BatchJobHelper.logBatchJob(className, asyncJobId, scheduleId, jobId);
-
+        this.className = String.valueOf(this).split(':')[0];
+        if (this.enhancedLoggingEnabled) {
+            //BatchJobLogger.logFinish();
+        } else {
+            BatchJobLogger.logLegacy(this.className, asyncJobId, scheduleId, jobId);
+        }
         if (executeNextJob) {
             batchJobScheduler.ExecuteNextJob();
         }
     }
 
     public void execute(FinalizerContext ctx) {
+        //writeQueueableLog();
         finishBatch(ctx.getAsyncApexJobId());
     }
 
