@@ -54,6 +54,7 @@ public with sharing class BatchJobLogger {
             Batch_Job_Name__c = className,
             Batch_Apex_Job__c = jobId,
             Batch_Job_Schedule__c = scheduleId,
+            AsyncApexJobId__c = asyncJobId,
             RecordTypeId = RecordTypeCache.LOG_RECORD_TYPE_PARENT
         );
         insert parentLog;

@@ -35,7 +35,7 @@ public virtual with sharing class BatchJobBase implements Finalizer, Database.Ra
     private String className;
     private Id asyncJobId;
 
-    /*public virtual void writeParentLog(Id asyncApexJobId) {
+    public virtual void writeParentLog(Id asyncApexJobId) {
         this.asyncJobId = asyncApexJobId;
         this.enhancedLoggingEnabled = true;
         this.className = String.valueOf(this).split(':')[0];
@@ -44,17 +44,22 @@ public virtual with sharing class BatchJobBase implements Finalizer, Database.Ra
     }
 
     public virtual void writeChildLog(List<SObject> chunkScope) {
-        BatchJobLogge.logExecute();
+        writeChildLog(chunkScope, true, '');
+    }
+
+    public virtual void writeChildLog(List<SObject> chunkScope, Boolean isSuccess, String message) {
+        String status = isSuccess ? 'Success' : 'Error';
+        BatchJobLogger.logExecute(chunkScope, asyncJobId, status, message);
     }
 
     public virtual void writeQueueableLog() {
-        BatchJobLogger.logFinish();
-    }*/
+        BatchJobLogger.logFinish(asyncJobId);
+    }
 
     public virtual void finishBatch(Id asyncJobId) {
         this.className = String.valueOf(this).split(':')[0];
         if (this.enhancedLoggingEnabled) {
-            //BatchJobLogger.logFinish();
+            BatchJobLogger.logFinish(asyncJobId);
         } else {
             BatchJobLogger.logLegacy(this.className, asyncJobId, scheduleId, jobId);
         }
