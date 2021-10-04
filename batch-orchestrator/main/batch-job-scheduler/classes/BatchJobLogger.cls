@@ -13,7 +13,8 @@ public with sharing class BatchJobLogger {
         writeParentLog(className, asyncJobId, scheduleId, jobId);
         BatchApexStatusEvent__e statusEvent = new BatchApexStatusEventBuilder()
             .withContext('Start')
-            .withStatus('Batch Job Started')
+            .withStatus('Information')
+            .withMessage('Batch Job Started')
             .withClassName(className)
             .withTimestamp(DateTime.now().getTime())
             .withJobId(asyncJobId)
@@ -26,7 +27,8 @@ public with sharing class BatchJobLogger {
     public static void logFinish(Id asyncJobId) {
         BatchApexStatusEvent__e statusEvent = new BatchApexStatusEventBuilder()
             .withContext('Finish')
-            .withStatus('Batch Job Finished')
+            .withStatus('Information')
+            .withMessage('Batch Job Finished')
             .withTimestamp(DateTime.now().getTime())
             .withJobId(asyncJobId)
             .withLimits()
@@ -35,12 +37,21 @@ public with sharing class BatchJobLogger {
         EventBus.publish(statusEvent);
     }
 
+    public static void logExecute(List<SObject> chunkScope, Id asyncJobId, String status) {
+        logExecute(chunkScope, asyncJobId, status, null);
+    }
+
+    public static void logExecuteInformation(Id asyncJobId, String message) {
+        logExecute(null, asyncJobId, 'Information', message);
+    }
+
     public static void logExecute(List<SObject> chunkScope, Id asyncJobId, String status, String message) {
+        String scopeJSON = chunkScope != null ? JSON.serializePretty(chunkScope).left(129999) : '';
         BatchApexStatusEvent__e statusEvent = new BatchApexStatusEventBuilder()
             .withContext('Execute')
             .withStatus(status)
             .withMessage(message)
-            .withScope(JSON.serializePretty(chunkScope).left(129999))
+            .withScope(scopeJSON)
             .withTimestamp(DateTime.now().getTime())
             .withJobId(asyncJobId)
             .withLimits()
@@ -54,8 +65,11 @@ public with sharing class BatchJobLogger {
             Batch_Job_Name__c = className,
             Batch_Apex_Job__c = jobId,
             Batch_Job_Schedule__c = scheduleId,
+            BatchApexJobParent__c = jobId,
+            BatchJobScheduleParent__c = scheduleId,
             AsyncApexJobId__c = asyncJobId,
-            RecordTypeId = RecordTypeCache.LOG_RECORD_TYPE_PARENT
+            RecordTypeId = RecordTypeCache.LOG_RECORD_TYPE_PARENT,
+            Result__c = 'Processing'
         );
         insert parentLog;
     }
@@ -101,8 +115,10 @@ public with sharing class BatchJobLogger {
                 Batch_Job_Name__c = batchJobName,
                 Batch_Apex_Job__c = jobId,
                 Batch_Job_Schedule__c = scheduleId,
+                BatchApexJobParent__c = jobId,
+                BatchJobScheduleParent__c = scheduleId,
                 Completed_Date__c = job.CompletedDate,
-                Status__c = job.Status,
+                Result__c = job.Status,
                 Batches_Processed__c = job.JobItemsProcessed,
                 Number_of_Errors__c = job.NumberOfErrors,
                 Execution_Result__c = (String.isNotBlank(executeResult) ? executeResult : '') + (String.isNotBlank(summary) ? '\n' + summary : '')

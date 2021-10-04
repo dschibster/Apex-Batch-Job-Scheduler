@@ -31,37 +31,47 @@ public virtual with sharing class BatchJobBase implements Finalizer, Database.Ra
     public Id scheduleId;
     public Id jobId;
     public String jobType;
-    private Boolean enhancedLoggingEnabled = false;
-    private String className;
-    private Id asyncJobId;
+    public Boolean enhancedLoggingEnabled = false;
+    public String className;
+    public String asyncJobId;
 
-    public virtual void writeParentLog(Id asyncApexJobId) {
-        this.asyncJobId = asyncApexJobId;
-        this.enhancedLoggingEnabled = true;
-        this.className = String.valueOf(this).split(':')[0];
-
-        BatchJobLogger.logStart(className, asyncJobId, scheduleId, jobId);
+    public virtual void startLogging(Id asyncApexJobId) {
+        BatchJobLogger.logStart(className, asyncApexJobId, scheduleId, jobId);
     }
 
-    public virtual void writeChildLog(List<SObject> chunkScope) {
-        writeChildLog(chunkScope, true, '');
+    public void logBatchInformation(Id asyncApexJobId, String message) {
+        if (enhancedLoggingEnabled) {
+            BatchJobLogger.logExecuteInformation(asyncApexJobId, message);
+        }
     }
 
-    public virtual void writeChildLog(List<SObject> chunkScope, Boolean isSuccess, String message) {
-        String status = isSuccess ? 'Success' : 'Error';
-        BatchJobLogger.logExecute(chunkScope, asyncJobId, status, message);
+    public void logEndOfBatch(List<SObject> scope, Id asyncApexJobId, Boolean isSuccess, String message) {
+        if (enhancedLoggingEnabled) {
+            if (isSuccess) {
+                logSuccessfulBatch(scope, asyncApexJobId, message);
+            } else {
+                logFailedBatch(scope, asyncApexJobId, message);
+            }
+        }
     }
 
-    public virtual void writeQueueableLog() {
+    public void logFailedBatch(List<SObject> chunkScope, Id asyncApexJobId, String message) {
+        BatchJobLogger.logExecute(chunkScope, asyncApexJobId, 'Error', message);
+    }
+
+    public void logSuccessfulBatch(List<SObject> chunkScope, Id asyncApexJobId, String message) {
+        BatchJobLogger.logExecute(chunkScope, asyncApexJobId, 'Success', message);
+    }
+
+    public void writeQueueableLog() {
         BatchJobLogger.logFinish(asyncJobId);
     }
 
-    public virtual void finishBatch(Id asyncJobId) {
-        this.className = String.valueOf(this).split(':')[0];
-        if (this.enhancedLoggingEnabled) {
-            BatchJobLogger.logFinish(asyncJobId);
+    public virtual void finishBatch(Id asyncApexJobId) {
+        if (enhancedLoggingEnabled) {
+            BatchJobLogger.logFinish(asyncApexJobId);
         } else {
-            BatchJobLogger.logLegacy(this.className, asyncJobId, scheduleId, jobId);
+            BatchJobLogger.logLegacy(className, asyncApexJobId, scheduleId, jobId);
         }
         if (executeNextJob) {
             batchJobScheduler.ExecuteNextJob();

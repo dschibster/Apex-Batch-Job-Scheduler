@@ -47,7 +47,7 @@ public inherited sharing class BatchJobHelper {
                 Batch_Apex_Job__c = jobId,
                 Batch_Job_Schedule__c = scheduleId,
                 Completed_Date__c = job.CompletedDate,
-                Status__c = job.Status,
+                //Status__c = job.Status,
                 Batches_Processed__c = job.JobItemsProcessed,
                 Number_of_Errors__c = job.NumberOfErrors,
                 Execution_Result__c = (String.isNotBlank(executeResult) ? executeResult : '') + (String.isNotBlank(summary) ? '\n' + summary : '')

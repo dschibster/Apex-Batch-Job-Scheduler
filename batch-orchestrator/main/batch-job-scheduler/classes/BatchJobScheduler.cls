@@ -86,7 +86,7 @@ global with sharing class BatchJobScheduler implements Schedulable {
         isEnabledMap = new Map<Integer, Boolean>();
 
         for (Batch_Apex_Job__c baj : [
-            SELECT Id, Name, Enabled__c, Batch_Class_Name__c, Batch_Size__c, Batch_Group__c, Batch_Job_Schedule__c, RecordType.DeveloperName
+            SELECT Id, Name, Enabled__c, Batch_Class_Name__c, Batch_Size__c, Batch_Group__c, Batch_Job_Schedule__c, EnhancedLogging__c, RecordType.DeveloperName
             FROM Batch_Apex_Job__c
             WHERE Batch_Job_Schedule__c = :scheduleId
             ORDER BY Batch_Group__c, CreatedDate
@@ -112,6 +112,8 @@ global with sharing class BatchJobScheduler implements Schedulable {
                 job.batchJobScheduler = this;
                 job.scheduleId = scheduleId;
                 job.jobId = jobId;
+                job.className = baj.Batch_Class_Name__c;
+                job.enhancedLoggingEnabled = baj.EnhancedLogging__c;
                 job.enqueue((Integer) baj.Batch_Size__c);
             }
         }
