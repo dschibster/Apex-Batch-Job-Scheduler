@@ -48,7 +48,7 @@ public with sharing class BatchApexStatusEventBuilder {
         this.statusEvent.DMLRowsLimit__c = Limits.getLimitDMLRows();
         this.statusEvent.DMLRowsUsed__c = Limits.getDMLRows();
         this.statusEvent.DMLStatementsLimit__c = Limits.getLimitDmlStatements();
-        this.statusEvent.DMLStatementsLimit__c = Limits.getDmlStatements();
+        this.statusEvent.DMLStatementsUsed__c = Limits.getDmlStatements();
         this.statusEvent.SOQLQueriesLimit__c = Limits.getLimitQueries();
         this.statusEvent.SOQLQueriesUsed__c = Limits.getQueries();
         this.statusEvent.SOQLRowsLimit__c = Limits.getLimitQueryRows();
