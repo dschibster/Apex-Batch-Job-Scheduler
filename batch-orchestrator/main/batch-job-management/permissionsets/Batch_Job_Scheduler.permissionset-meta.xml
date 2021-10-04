@@ -16,6 +16,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Batch_Apex_Job__c.EnhancedLogging__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Batch_Apex_Job__c.Run_Now__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -38,6 +43,11 @@
         <editable>true</editable>
         <field>Batch_Job_Log__c.Batch_Apex_Job__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Batch_Job_Log__c.Batch_Job_Name__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -101,8 +111,8 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Batch_Job_Log__c.Message__c</field>
-        <readable>true</readable>
+        <field>Batch_Job_Log__c.FailedBatches__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -141,13 +151,8 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Batch_Job_Log__c.StatusFm__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Batch_Job_Log__c.Status__c</field>
-        <readable>true</readable>
+        <field>Batch_Job_Log__c.SuccessfulBatches__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
