@@ -37,6 +37,7 @@ public inherited sharing class RecordTypeCache {
     public static final Id SCHEDULER_RECORD_TYPE_CUSTOM_CRON_EXPRESSION_JOB = rtInfosBatchJobSchedule.get('Custom_Cron_Expression_Job').getRecordTypeId();
     public static final Id SCHEDULER_RECORD_TYPE_EXISTING_SCHEDULED_JOB_JOB = rtInfosBatchJobSchedule.get('Existing_Scheduled_Job').getRecordTypeId();
     public static final Id JOB_RECORD_TYPE_BATCHABLE = rtInfosBatchJobApexJob.get('Batchable').getRecordTypeId();
+    public static final Id JOB_RECORD_TYPE_QUEUEABLE = rtInfosBatchJobApexJob.get('Batchable').getRecordTypeId();
     public static final Id LOG_RECORD_TYPE_CHILD = rtInfosBatchJobLog.get('Batch_Child_Log').getRecordTypeId();
     public static final Id LOG_RECORD_TYPE_PARENT = rtInfosBatchJobLog.get('Batch_Parent_Log').getRecordTypeId();
     public static final Id LOG_RECORD_TYPE_QUEUEABLE = rtInfosBatchJobLog.get('Queueable_Log').getRecordTypeId();
