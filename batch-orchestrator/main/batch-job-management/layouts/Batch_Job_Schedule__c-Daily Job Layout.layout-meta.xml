@@ -103,8 +103,11 @@
         <sortOrder>Desc</sortOrder>
     </relatedLists>
     <relatedLists>
+        <excludeButtons>MassChangeOwner</excludeButtons>
+        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>Batch_Job_Name__c</fields>
+        <fields>Result__c</fields>
         <fields>Completed_Date__c</fields>
         <fields>Execution_Result__c</fields>
         <relatedList>Batch_Job_Log__c.BatchJobScheduleParent__c</relatedList>
@@ -115,7 +118,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h1j000003Dm7e</masterLabel>
+        <masterLabel>00h1X000003AzVu</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

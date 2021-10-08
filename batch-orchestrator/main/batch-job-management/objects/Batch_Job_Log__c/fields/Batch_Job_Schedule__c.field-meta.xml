@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <fullName>Batch_Job_Schedule__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
     <label>Batch Job Schedule</label>
     <referenceTo>Batch_Job_Schedule__c</referenceTo>
-    <relationshipLabel>Batch Job Logs</relationshipLabel>
+    <relationshipLabel>All Batch Job Logs</relationshipLabel>
     <relationshipName>Batch_Job_Logs</relationshipName>
     <required>false</required>
     <trackTrending>false</trackTrending>

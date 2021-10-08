@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <fullName>CPUTimeUsed__c</fullName>
+    <fullName>SOQL_Rows__c</fullName>
     <externalId>false</externalId>
-    <label>CPU Time Used</label>
-    <precision>8</precision>
+    <formula>TEXT(SOQLRowsUsed__c) +&apos; / &apos;+ TEXT(SOQLRowsLimit__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>SOQL Rows</label>
     <required>false</required>
-    <scale>0</scale>
     <trackTrending>false</trackTrending>
-    <type>Number</type>
+    <type>Text</type>
     <unique>false</unique>
 </CustomField>

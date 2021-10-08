@@ -93,11 +93,13 @@
         <fields>Completed_Date__c</fields>
     </miniLayout>
     <relatedLists>
+        <excludeButtons>MassChangeOwner</excludeButtons>
+        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>Context__c</fields>
         <fields>Result__c</fields>
-        <fields>Timestamp__c</fields>
         <fields>Execution_Result__c</fields>
+        <fields>Timestamp__c</fields>
         <relatedList>Batch_Job_Log__c.Parent_Log__c</relatedList>
         <sortField>Timestamp__c</sortField>
         <sortOrder>Asc</sortOrder>
