@@ -18,7 +18,7 @@ public with sharing class RunBatchApexJobControllerTest {
     @isTest
     static void runJobFromController() {
         Batch_Apex_Job__c firstJob = [
-            SELECT Id, Batch_Class_Name__c, Batch_Job_Schedule__c, Batch_Size__c, RecordType.DeveloperName
+            SELECT Id, Batch_Class_Name__c, Batch_Job_Schedule__c, Batch_Size__c, RecordType.DeveloperName, EnhancedLogging__c
             FROM Batch_Apex_Job__c
             LIMIT 1
         ];

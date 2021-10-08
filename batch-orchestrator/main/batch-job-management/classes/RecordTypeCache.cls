@@ -41,4 +41,5 @@ public inherited sharing class RecordTypeCache {
     public static final Id LOG_RECORD_TYPE_CHILD = rtInfosBatchJobLog.get('Batch_Child_Log').getRecordTypeId();
     public static final Id LOG_RECORD_TYPE_PARENT = rtInfosBatchJobLog.get('Batch_Parent_Log').getRecordTypeId();
     public static final Id LOG_RECORD_TYPE_QUEUEABLE = rtInfosBatchJobLog.get('Queueable_Log').getRecordTypeId();
+    public static final Id LOG_RECORD_TYPE_LEGACY = rtInfosBatchJobLog.get('Legacy_Log').getRecordTypeId();
 }

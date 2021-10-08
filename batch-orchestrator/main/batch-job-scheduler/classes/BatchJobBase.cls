@@ -36,12 +36,20 @@ public virtual with sharing class BatchJobBase implements Finalizer, Database.Ra
     public String asyncJobId;
 
     public virtual void startLogging(Id asyncApexJobId) {
-        BatchJobLogger.logStart(className, asyncApexJobId, scheduleId, jobId);
+        if (enhancedLoggingEnabled) {
+            BatchJobLogger.logStart(className, asyncApexJobId, scheduleId, jobId);
+        }
     }
 
     public void logBatchInformation(Id asyncApexJobId, String message) {
         if (enhancedLoggingEnabled) {
             BatchJobLogger.logExecuteInformation(asyncApexJobId, message);
+        }
+    }
+
+    public void logBatchInformation(List<SObject> scope, Id asyncApexJobId, String message) {
+        if (enhancedLoggingEnabled) {
+            BatchJobLogger.logExecuteInformation(scope, asyncApexJobId, message);
         }
     }
 
@@ -83,14 +91,15 @@ public virtual with sharing class BatchJobBase implements Finalizer, Database.Ra
         finishBatch(ctx.getAsyncApexJobId());
     }
 
-    public void enqueue(Integer batchSize) {
+    public Id enqueue(Integer batchSize) {
         switch on jobType {
             when 'Queueable' {
-                System.enqueueJob((System.Queueable) this);
+                return System.enqueueJob((System.Queueable) this);
             }
             when 'Batchable' {
-                Database.executeBatch((Database.Batchable<Object>) this, batchSize);
+                return Database.executeBatch((Database.Batchable<Object>) this, batchSize);
             }
         }
+        return null;
     }
 }

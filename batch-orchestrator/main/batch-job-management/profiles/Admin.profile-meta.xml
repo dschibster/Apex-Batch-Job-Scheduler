@@ -488,11 +488,15 @@
         <recordType>Batch_Job_Log__c.Batch_Child_Log</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Batch_Job_Log__c-Batch Job Log Layout</layout>
+        <layout>Batch_Job_Log__c-Batch Parent Log Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Batch_Job_Log__c-Batch Job Log Layout</layout>
+        <layout>Batch_Job_Log__c-Batch Parent Log Layout</layout>
         <recordType>Batch_Job_Log__c.Batch_Parent_Log</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Batch_Job_Log__c-Legacy Log Layout</layout>
+        <recordType>Batch_Job_Log__c.Legacy_Log</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Batch_Job_Log__c-Queueable Log Layout</layout>
@@ -595,6 +599,11 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Batch_Job_Log__c.Batch_Parent_Log</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Batch_Job_Log__c.Legacy_Log</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>

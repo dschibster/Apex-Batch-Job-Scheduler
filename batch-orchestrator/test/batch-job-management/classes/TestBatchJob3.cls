@@ -28,17 +28,21 @@
 
 public with sharing class TestBatchJob3 extends BatchJobBase implements Database.Batchable<sObject> {
     public Database.QueryLocator start(Database.BatchableContext BC) {
+        super.startLogging(BC?.getJobId());
         return Database.getQueryLocator([SELECT Id, Type FROM Account WHERE Type = '_BJS_Testing_']);
     }
 
     public void execute(Database.BatchableContext BC, List<Account> scope) {
+        super.logBatchInformation(BC?.getJobId(), 'Test');
         for (Account account : scope) {
             account.Type = 'Prospect';
         }
         update scope;
+        //log a failed Batch as opposed to the others
+        super.logEndOfBatch(scope, BC?.getJobId(), false, 'Failing for Test');
     }
 
     public void finish(Database.BatchableContext BC) {
-        super.finishBatch(BC.getJobId());
+        super.finishBatch(BC?.getJobId());
     }
 }

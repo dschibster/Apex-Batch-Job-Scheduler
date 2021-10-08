@@ -21,6 +21,7 @@ public with sharing class BatchJobSchedulerTestDataFactory {
         Batch_Apex_Job__c batchJob1 = new Batch_Apex_Job__c(
             Batch_Job_Schedule__c = sch.Id,
             Batch_Class_Name__c = 'TestBatchJob1',
+            EnhancedLogging__c = true,
             Batch_Group__c = '1',
             Enabled__c = true,
             RecordTypeId = RecordTypeCache.JOB_RECORD_TYPE_BATCHABLE

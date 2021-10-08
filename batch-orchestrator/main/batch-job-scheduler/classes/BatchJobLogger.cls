@@ -45,6 +45,10 @@ public with sharing class BatchJobLogger {
         logExecute(null, asyncJobId, 'Information', message);
     }
 
+    public static void logExecuteInformation(List<SObject> scope, Id asyncJobId, String message) {
+        logExecute(scope, asyncJobId, 'Information', message);
+    }
+
     public static void logExecute(List<SObject> chunkScope, Id asyncJobId, String status, String message) {
         String scopeJSON = chunkScope != null ? JSON.serializePretty(chunkScope).left(129999) : '';
         BatchApexStatusEvent__e statusEvent = new BatchApexStatusEventBuilder()
@@ -121,6 +125,7 @@ public with sharing class BatchJobLogger {
                 Result__c = job.Status,
                 Batches_Processed__c = job.JobItemsProcessed,
                 Number_of_Errors__c = job.NumberOfErrors,
+                RecordTypeId = RecordTypeCache.LOG_RECORD_TYPE_LEGACY,
                 Execution_Result__c = (String.isNotBlank(executeResult) ? executeResult : '') + (String.isNotBlank(summary) ? '\n' + summary : '')
             );
             insert bjl;
