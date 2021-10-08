@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <fullName>Batch_Parent_Log</fullName>
     <active>true</active>
     <label>Batch Parent Log</label>
@@ -27,29 +27,6 @@
         </values>
         <values>
             <fullName>Processing</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Success</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
-        <picklist>Status__c</picklist>
-        <values>
-            <fullName>Completed</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Error</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Failed</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Information</fullName>
             <default>false</default>
         </values>
         <values>

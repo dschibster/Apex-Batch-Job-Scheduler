@@ -254,6 +254,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Batch_Job_Log__c.Async_Apex_Limit__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Batch_Job_Log__c.BatchApexJobParent__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -294,6 +299,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Batch_Job_Log__c.CPUTime__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Batch_Job_Log__c.ClassName__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -325,6 +335,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Batch_Job_Log__c.DMLStatementsUsed__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Batch_Job_Log__c.DML_Rows__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Batch_Job_Log__c.DML_Statements__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -370,6 +390,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Batch_Job_Log__c.SOQLRowsUsed__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Batch_Job_Log__c.SOQL_Queries__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Batch_Job_Log__c.SOQL_Rows__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -454,18 +484,18 @@
         <recordType>Batch_Apex_Job__c.Queueable</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Batch_Job_Log__c-Batch Job Log Layout</layout>
+        <layout>Batch_Job_Log__c-Batch Child Log Layout</layout>
+        <recordType>Batch_Job_Log__c.Batch_Child_Log</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Batch_Job_Log__c-Batch Job Log Layout</layout>
-        <recordType>Batch_Job_Log__c.Batch_Child_Log</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Batch_Job_Log__c-Batch Job Log Layout</layout>
         <recordType>Batch_Job_Log__c.Batch_Parent_Log</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Batch_Job_Log__c-Batch Job Log Layout</layout>
+        <layout>Batch_Job_Log__c-Queueable Log Layout</layout>
         <recordType>Batch_Job_Log__c.Queueable_Log</recordType>
     </layoutAssignments>
     <layoutAssignments>
