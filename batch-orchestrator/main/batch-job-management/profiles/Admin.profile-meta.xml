@@ -204,6 +204,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>BatchApexStatusEvent__e.SObjectJSON__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>BatchApexStatusEvent__e.Scope__c</field>
         <readable>false</readable>
     </fieldPermissions>
