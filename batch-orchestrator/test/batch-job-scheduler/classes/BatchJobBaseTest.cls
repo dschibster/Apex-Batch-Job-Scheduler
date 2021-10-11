@@ -32,8 +32,8 @@ public with sharing class BatchJobBaseTest {
 
         Id asyncJobId = enhancedLoggingBatchJob.enqueue(10);
         enhancedLoggingBatchJob.startLogging(asyncJobId);
-        enhancedLoggingbatchJob.logBatchInformation(new List<Account>{ new Account(Name = 'Test Batch Job') }, asyncJobId, 'test');
-        enhancedLoggingbatchJob.logBatchInformation(asyncJobId, 'test');
+        enhancedLoggingbatchJob.logInformation(new List<Account>{ new Account(Name = 'Test Batch Job') }, asyncJobId, 'test');
+        enhancedLoggingbatchJob.logInformation(asyncJobId, 'test');
         enhancedLoggingbatchJob.logEndOfBatch(new List<Account>{ new Account(Name = 'Test Batch Job') }, asyncJobId, true, 'test');
         enhancedLoggingbatchJob.logEndOfBatch(new List<Account>{ new Account(Name = 'Test Batch Job') }, asyncJobId, false, 'test');
         Test.stopTest();

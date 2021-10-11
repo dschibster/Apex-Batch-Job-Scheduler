@@ -57,6 +57,11 @@ public with sharing class BatchApexStatusEventBuilder {
         return this;
     }
 
+    public BatchApexStatusEventBuilder withSObjectJSON(String sObjectJSON) {
+        this.statusEvent.SObjectJSON__c = SObjectJSON;
+        return this;
+    }
+
     public BatchApexStatusEvent__e getRecord() {
         return this.statusEvent;
     }

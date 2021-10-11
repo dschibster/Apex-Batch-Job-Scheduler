@@ -1,5 +1,6 @@
 public with sharing class BatchApexErrorEventHandler extends TriggerHandlerExtension {
     BatchApexErrorEventHelper helper;
+    String lastReplayId;
 
     public BatchApexErrorEventHandler() {
         super();
@@ -8,20 +9,20 @@ public with sharing class BatchApexErrorEventHandler extends TriggerHandlerExten
 
     public override void bulkAfter() {
         helper.getApexJobs();
-        helper.getParentLogs();
     }
 
     public override void afterInsert(SObject newSObject) {
-        lstInsert.add(helper.createChildLogRecord((BatchApexErrorEvent) newSObject));
+        BatchApexErrorEvent evt = (BatchApexErrorEvent) newSObject;
+        lstInsert.add(helper.createStatusEvent(evt));
+        lastReplayId = evt.ReplayId;
     }
 
     public override void andFinally() {
-        lstUpdate.addAll(helper.parentLogsById.values());
-        if (!lstUpdate.isEmpty()) {
-            update lstUpdate;
-        }
         if (!lstInsert.isEmpty()) {
-            insert lstInsert;
+            EventBus.publish(lstInsert);
+        }
+        if (lastReplayId != null) {
+            Eventbus.TriggerContext.currentContext().setResumeCheckpoint(lastReplayId);
         }
     }
 }

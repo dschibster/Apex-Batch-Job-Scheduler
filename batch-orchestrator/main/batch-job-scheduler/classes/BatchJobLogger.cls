@@ -12,7 +12,7 @@ public with sharing class BatchJobLogger {
     public static void logStart(String className, Id asyncJobId, Id scheduleId, Id jobId) {
         writeParentLog(className, asyncJobId, scheduleId, jobId);
         BatchApexStatusEvent__e statusEvent = new BatchApexStatusEventBuilder()
-            .withContext('Start')
+            .withContext('START')
             .withStatus('Information')
             .withMessage('Batch Job Started')
             .withClassName(className)
@@ -26,7 +26,7 @@ public with sharing class BatchJobLogger {
 
     public static void logFinish(Id asyncJobId) {
         BatchApexStatusEvent__e statusEvent = new BatchApexStatusEventBuilder()
-            .withContext('Finish')
+            .withContext('FINISH')
             .withStatus('Information')
             .withMessage('Batch Job Finished')
             .withTimestamp(DateTime.now().getTime())
@@ -52,7 +52,7 @@ public with sharing class BatchJobLogger {
     public static void logExecute(List<SObject> chunkScope, Id asyncJobId, String status, String message) {
         String scopeJSON = chunkScope != null ? JSON.serializePretty(chunkScope).left(129999) : '';
         BatchApexStatusEvent__e statusEvent = new BatchApexStatusEventBuilder()
-            .withContext('Execute')
+            .withContext('EXECUTE')
             .withStatus(status)
             .withMessage(message)
             .withScope(scopeJSON)
@@ -64,8 +64,8 @@ public with sharing class BatchJobLogger {
         EventBus.publish(statusEvent);
     }
 
-    public static void writeParentLog(String className, Id asyncJobId, Id scheduleId, Id jobId) {
-        Batch_Job_Log__c parentLog = new Batch_Job_Log__c(
+    private static Batch_Job_Log__c getParentLog(String className, Id asyncJobId, Id scheduleId, Id jobId) {
+        return new Batch_Job_Log__c(
             Batch_Job_Name__c = className,
             Batch_Apex_Job__c = jobId,
             Batch_Job_Schedule__c = scheduleId,
@@ -75,7 +75,43 @@ public with sharing class BatchJobLogger {
             RecordTypeId = RecordTypeCache.LOG_RECORD_TYPE_PARENT,
             Result__c = 'Processing'
         );
-        insert parentLog;
+    }
+
+    public static void writeParentLog(String className, Id asyncJobId, Id scheduleId, Id jobId, Boolean isAsync) {
+        Batch_Job_Log__c parentLog = getParentLog(className, asyncJobId, scheduleId, jobId);
+        if (isAsync) {
+            EventBus.publish(new BatchApexStatusEventBuilder().withSObjectJSON(JSON.serializePretty(parentLog)).getRecord());
+        } else {
+            insert parentLog;
+        }
+    }
+
+    public static void writeParentLog(String className, Id asyncJobId, Id scheduleId, Id jobId) {
+        writeParentLog(className, asyncJobId, scheduleId, jobId, false);
+    }
+
+    public static void writeQueueableParentLog(String className, Id asyncJobId, Id scheduleId, Id jobId) {
+        Batch_Job_Log__c queueableLog = getParentLog(className, asyncJobId, scheduleId, jobId);
+        queueableLog.RecordTypeId = RecordTypeCache.LOG_RECORD_TYPE_QUEUEABLE;
+        EventBus.publish(new BatchApexStatusEventBuilder().withSObjectJSON(JSON.serializePretty(queueableLog)).getRecord());
+    }
+
+    public static void updateParentQueueableLog(Id asyncJobId) {
+        AsyncApexJob job = [
+            SELECT Id, Status, NumberOfErrors, JobItemsProcessed, TotalJobItems, CompletedDate, CreatedBy.Email, ExtendedStatus
+            FROM AsyncApexJob
+            WHERE Id = :asyncJobId
+        ];
+
+        BatchApexStatusEvent__e statusEvent = new BatchApexStatusEventBuilder()
+            .withContext('FINISH')
+            .withStatus(job.Status)
+            .withMessage(job.ExtendedStatus)
+            .withTimestamp(job.CompletedDate?.getTime())
+            .withJobId(asyncJobId)
+            .getRecord();
+
+        EventBus.publish(statusEvent);
     }
 
     /**

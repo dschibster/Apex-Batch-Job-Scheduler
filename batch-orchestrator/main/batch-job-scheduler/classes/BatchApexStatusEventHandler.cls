@@ -10,11 +10,14 @@ public without sharing class BatchApexStatusEventHandler extends TriggerHandlerE
     public override void bulkAfter() {
         helper.getApexJobs();
         helper.getParentLogs();
+        helper.createParentLogsFromSObjectJSON();
     }
 
     public override void afterInsert(SObject newSObject) {
         BatchApexStatusEvent__e evt = (BatchApexStatusEvent__e) newSObject;
-        lstInsert.add(helper.createChildLogRecord(evt));
+        if (evt.SObjectJSON__c == null) {
+            lstInsert.add(helper.createChildLogRecord(evt));
+        }
         lastReplayId = evt.ReplayId;
     }
 

@@ -25,7 +25,7 @@
  * @last modified by  : dschibster
  **/
 
-public virtual with sharing class BatchJobBase implements Finalizer, Database.RaisesPlatformEvents {
+public virtual with sharing class BatchJobBase implements Finalizer {
     public Boolean executeNextJob = false;
     public BatchJobScheduler batchJobScheduler;
     public Id scheduleId;
@@ -35,19 +35,23 @@ public virtual with sharing class BatchJobBase implements Finalizer, Database.Ra
     public String className;
     public String asyncJobId;
 
-    public virtual void startLogging(Id asyncApexJobId) {
+    public void startLogging(Id asyncApexJobId) {
         if (enhancedLoggingEnabled) {
-            BatchJobLogger.logStart(className, asyncApexJobId, scheduleId, jobId);
+            if (jobType == 'Queueable') {
+                BatchJobLogger.writeQueueableParentLog(className, asyncApexJobId, scheduleId, jobId);
+            } else {
+                BatchJobLogger.logStart(className, asyncApexJobId, scheduleId, jobId);
+            }
         }
     }
 
-    public void logBatchInformation(Id asyncApexJobId, String message) {
+    public void logInformation(Id asyncApexJobId, String message) {
         if (enhancedLoggingEnabled) {
             BatchJobLogger.logExecuteInformation(asyncApexJobId, message);
         }
     }
 
-    public void logBatchInformation(List<SObject> scope, Id asyncApexJobId, String message) {
+    public void logInformation(List<SObject> scope, Id asyncApexJobId, String message) {
         if (enhancedLoggingEnabled) {
             BatchJobLogger.logExecuteInformation(scope, asyncApexJobId, message);
         }
@@ -71,13 +75,13 @@ public virtual with sharing class BatchJobBase implements Finalizer, Database.Ra
         BatchJobLogger.logExecute(chunkScope, asyncApexJobId, 'Success', message);
     }
 
-    public void writeQueueableLog() {
-        BatchJobLogger.logFinish(asyncJobId);
-    }
-
     public virtual void finishBatch(Id asyncApexJobId) {
         if (enhancedLoggingEnabled) {
-            BatchJobLogger.logFinish(asyncApexJobId);
+            if (jobType == 'Batchable') {
+                BatchJobLogger.logFinish(asyncApexJobId);
+            } else {
+                BatchJobLogger.updateParentQueueableLog(asyncApexJobId);
+            }
         } else {
             BatchJobLogger.logLegacy(className, asyncApexJobId, scheduleId, jobId);
         }
@@ -87,7 +91,6 @@ public virtual with sharing class BatchJobBase implements Finalizer, Database.Ra
     }
 
     public void execute(FinalizerContext ctx) {
-        //writeQueueableLog();
         finishBatch(ctx.getAsyncApexJobId());
     }
 
