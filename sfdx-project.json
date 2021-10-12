@@ -1,17 +1,16 @@
 {
     "packageDirectories": [
-
         {
             "path": "batch-orchestrator",
             "package": "sfdx-batch-orchestrator",
-            "versionName": "ver 1.0",
-            "versionNumber": "1.0.0.NEXT",
+            "versionName": "ver 1.1",
+            "versionNumber": "1.1.0.NEXT",
             "default": true,
-            "branch" : "master",
-            "dependencies" : [
-              {
-                "package" : "SFDX Trigger Factory - 1.0.0"
-              }
+            "branch": "master",
+            "dependencies": [
+                {
+                    "package": "SFDX Trigger Factory - 1.0.0"
+                }
             ]
         }
     ],
@@ -21,7 +20,8 @@
     "sourceApiVersion": "52.0",
     "packageAliases": {
         "sfdx-batch-orchestrator": "0Ho09000000sY5sCAE",
-        "SFDX Trigger Factory - 1.0.0" : "04t09000000ibshAAA",
-        "sfdx-batch-orchestrator@1.0.0.0" : "04t09000000ibsmAAA"
+        "SFDX Trigger Factory - 1.0.0": "04t09000000ibshAAA",
+        "sfdx-batch-orchestrator@1.0.0.0": "04t09000000ibsmAAA",
+        "sfdx-batch-orchestrator@1.1.0.0": "04t09000000iih4AAA"
     }
 }
