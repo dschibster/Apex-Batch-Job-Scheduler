@@ -16,14 +16,14 @@
  * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
- * OR OTHER DEALINGS IN THE SOFTWARE. 
- * 
+ * OR OTHER DEALINGS IN THE SOFTWARE.
+ *
  * @description       : Trigger Helper containing Cron Job and Validation functionality
  * @author            : dschibster
  * @group             : Scheduler
  * @last modified on  : 2021-08-27
  * @last modified by  : dschibster
-**/
+ **/
 
 public class BatchJobScheduleHelper {
     public static BatchJobScheduleHelper instance;
@@ -48,20 +48,12 @@ public class BatchJobScheduleHelper {
             } else if (sch.RecordTypeId == RecordTypeCache.SCHEDULER_RECORD_TYPE_DAILY_JOB) {
                 sch.Cron_Expression__c = String.format(
                     '0 {0} {1} 1/{2} * ? *',
-                    new List<String>{
-                        sch.Preferred_Start_Minute__c,
-                        sch.Preferred_Start_Hour__c,
-                        String.valueOf(sch.Every_Number_of_Days__c)
-                    }
+                    new List<String>{ sch.Preferred_Start_Minute__c, sch.Preferred_Start_Hour__c, String.valueOf(sch.Every_Number_of_Days__c) }
                 );
             } else if (sch.RecordTypeId == RecordTypeCache.SCHEDULER_RECORD_TYPE_WEEKLY_JOB) {
                 sch.Cron_Expression__c = String.format(
                     '0 {0} {1} ? * {2} *',
-                    new List<String>{
-                        sch.Preferred_Start_Minute__c,
-                        sch.Preferred_Start_Hour__c,
-                        sch.Preferred_Start_Week_Day__c.replace(';', ',')
-                    }
+                    new List<String>{ sch.Preferred_Start_Minute__c, sch.Preferred_Start_Hour__c, sch.Preferred_Start_Week_Day__c.replace(';', ',') }
                 );
             } else if (sch.RecordTypeId == RecordTypeCache.SCHEDULER_RECORD_TYPE_MONTHLY_JOB) {
                 sch.Cron_Expression__c = String.format(
@@ -76,12 +68,7 @@ public class BatchJobScheduleHelper {
             } else if (sch.RecordTypeId == RecordTypeCache.SCHEDULER_RECORD_TYPE_YEARLY_JOB) {
                 sch.Cron_Expression__c = String.format(
                     '0 {0} {1} {2} {3} ? *',
-                    new List<String>{
-                        sch.Preferred_Start_Minute__c,
-                        sch.Preferred_Start_Hour__c,
-                        sch.Preferred_Start_Day__c,
-                        sch.Preferred_Start_Month__c
-                    }
+                    new List<String>{ sch.Preferred_Start_Minute__c, sch.Preferred_Start_Hour__c, sch.Preferred_Start_Day__c, sch.Preferred_Start_Month__c }
                 );
             }
         }
@@ -91,13 +78,9 @@ public class BatchJobScheduleHelper {
         Set<Id> cronTriggerIds = new Set<Id>();
 
         for (Batch_Job_Schedule__c sch : schedules) {
-            if (
-                sch.RecordTypeId == RecordTypeCache.SCHEDULER_RECORD_TYPE_EXISTING_SCHEDULED_JOB_JOB &&
-                sch.Cron_Trigger_Id__c != null
-            )
-                {
-                    cronTriggerIds.add(sch.Cron_Trigger_Id__c);
-                }
+            if (sch.RecordTypeId == RecordTypeCache.SCHEDULER_RECORD_TYPE_EXISTING_SCHEDULED_JOB_JOB && sch.Cron_Trigger_Id__c != null) {
+                cronTriggerIds.add(sch.Cron_Trigger_Id__c);
+            }
         }
 
         Set<Id> cronTrigggerIdSet = getCronTrigggerIdSet(cronTriggerIds);
@@ -115,14 +98,9 @@ public class BatchJobScheduleHelper {
         String SCHEDULED_APEX = '7';
         Set<Id> result = new Set<Id>();
 
-        for (CronTrigger cron : [
-            SELECT Id
-            FROM CronTrigger
-            WHERE CronJobDetail.JobType = :SCHEDULED_APEX AND Id IN :cronTriggerIds
-        ])
-            {
-                result.add(cron.Id);
-            }
+        for (CronTrigger cron : [SELECT Id FROM CronTrigger WHERE CronJobDetail.JobType = :SCHEDULED_APEX AND Id IN :cronTriggerIds]) {
+            result.add(cron.Id);
+        }
 
         return result;
     }

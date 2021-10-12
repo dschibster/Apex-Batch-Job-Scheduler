@@ -12,3 +12,6 @@ package.xml
 **/__tests__/**
 
 **/AppSwitcher.appMenu-meta.xml
+**/Custom%3A Marketing Profile.profile-meta.xml
+**/Custom%3A Sales Profile.profile-meta.xml
+**/Custom%3A Support Profile.profile-meta.xml

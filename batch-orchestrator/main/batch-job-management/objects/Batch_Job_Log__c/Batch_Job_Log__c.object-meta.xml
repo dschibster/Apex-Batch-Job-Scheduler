@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <actionOverrides>
         <actionName>Accept</actionName>
         <type>Default</type>
@@ -167,7 +167,7 @@
         <customTabListAdditionalFields>Execution_Result__c</customTabListAdditionalFields>
         <searchResultsAdditionalFields>Batch_Job_Name__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Completed_Date__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>StatusFm__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields xsi:nil="true" />
         <searchResultsAdditionalFields>Batches_Processed__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Number_of_Errors__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Execution_Result__c</searchResultsAdditionalFields>

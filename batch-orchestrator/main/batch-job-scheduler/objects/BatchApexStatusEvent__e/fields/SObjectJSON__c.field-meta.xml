@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SObjectJSON__c</fullName>
+    <description
+    >This field is used for the async creation of Parent Logs when in a Queuable. Can selectively be used for Batch Jobs too, however not necessary here. Used to ensure that Webservice Callouts don&apos;t run into &quot;uncommited work pending&quot; issues.</description>
+    <externalId>false</externalId>
+    <isFilteringDisabled>false</isFilteringDisabled>
+    <isNameField>false</isNameField>
+    <isSortingDisabled>false</isSortingDisabled>
+    <label>SObject JSON</label>
+    <length>3000</length>
+    <type>LongTextArea</type>
+    <visibleLines>20</visibleLines>
+</CustomField>

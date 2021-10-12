@@ -16,14 +16,14 @@
  * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
- * OR OTHER DEALINGS IN THE SOFTWARE. 
- *  
+ * OR OTHER DEALINGS IN THE SOFTWARE.
+ *
  * @description       : Apex Controller for the Configuration Page.
  * @author            : ianhuang
  * @group             : Batch Job Management
  * @last modified on  : 2021-08-27
  * @last modified by  : dschibster
-**/
+ **/
 
 public with sharing class SchedulerConfigurationController {
     public static final String CRONTIGGER_JOBTYPE_SCHEDULED_APEX = '7';
@@ -43,7 +43,7 @@ public with sharing class SchedulerConfigurationController {
 
         updateBatchJobSchedules();
         pageRef.setRedirect(true);
-        
+
         return pageRef;
     }
 
@@ -72,9 +72,7 @@ public with sharing class SchedulerConfigurationController {
             if (!sr.isSuccess()) {
                 // Operation failed, so get all errors
                 for (Database.Error err : sr.getErrors()) {
-                    ApexPages.addMessage(
-                        new ApexPages.Message(ApexPages.severity.ERROR, 'DML Error: ' + err.getMessage())
-                    );
+                    ApexPages.addMessage(new ApexPages.Message(ApexPages.severity.ERROR, 'DML Error: ' + err.getMessage()));
                     System.debug('The following error has occurred.');
                     System.debug(err.getStatusCode() + ': ' + err.getMessage());
                 }
@@ -92,20 +90,9 @@ public with sharing class SchedulerConfigurationController {
     }
 
     private Map<Id, CronTrigger> retrieveCronTriggerMap() {
-        
         Map<Id, CronTrigger> result = new Map<Id, CronTrigger>(
             [
-                SELECT
-                    Id,
-                    CronExpression,
-                    CronJobDetailId,
-                    NextFireTime,
-                    PreviousFireTime,
-                    StartTime,
-                    EndTime,
-                    State,
-                    TimesTriggered,
-                    CronJobDetail.Name
+                SELECT Id, CronExpression, CronJobDetailId, NextFireTime, PreviousFireTime, StartTime, EndTime, State, TimesTriggered, CronJobDetail.Name
                 FROM CronTrigger
                 WHERE CronJobDetail.JobType = :CRONTIGGER_JOBTYPE_SCHEDULED_APEX
             ]
@@ -140,12 +127,7 @@ public with sharing class SchedulerConfigurationController {
     }
 
     private Boolean canUpdateSchedule() {
-        String[] batchJobScheduleUpdateFields = new List<String>{
-            'Name',
-            'Cron_Trigger_Id__c',
-            'Cron_Expression__c',
-            'RecordTypeId'
-        };
+        String[] batchJobScheduleUpdateFields = new List<String>{ 'Name', 'Cron_Trigger_Id__c', 'Cron_Expression__c', 'RecordTypeId' };
 
         // Obtaining the field name/token map for the Batch_Job_Schedule__c object
         Map<String, Schema.SObjectField> fieldMap = Schema.SObjectType.Batch_Job_Schedule__c.fields.getMap();
@@ -161,15 +143,15 @@ public with sharing class SchedulerConfigurationController {
         return true;
     }
 
-    public class ScheduledApexJob{
-        public Boolean                Scheduled    {get; set;}
-        public Batch_Job_Schedule__c  Schedule     {get; private set;}
-        public CronTrigger            CronTrigger  {get; private set;}
-        
+    public class ScheduledApexJob {
+        public Boolean Scheduled { get; set; }
+        public Batch_Job_Schedule__c Schedule { get; private set; }
+        public CronTrigger CronTrigger { get; private set; }
+
         public ScheduledApexJob(Batch_Job_Schedule__c schedule, CronTrigger cronTrigger) {
-            this.schedule    = schedule;
+            this.schedule = schedule;
             this.cronTrigger = cronTrigger;
-            this.scheduled   = cronTrigger != null;
+            this.scheduled = cronTrigger != null;
         }
     }
 }

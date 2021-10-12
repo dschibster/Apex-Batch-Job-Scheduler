@@ -2,14 +2,16 @@
 <CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
     <brand>
         <headerColor>#0070D2</headerColor>
+        <logo>batchorchestratorlogo</logo>
+        <logoVersion>1</logoVersion>
         <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
     </brand>
-    <description>Schedule your Batch Jobs form within this centralized App</description>
+    <description>Schedule your Batch Jobs from within this centralized App</description>
     <formFactors>Small</formFactors>
     <formFactors>Large</formFactors>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
-    <label>Batch Job Scheduler</label>
+    <label>Batch Orchestrator</label>
     <navType>Standard</navType>
     <tabs>Batch_Job_Scheduler_Configuration</tabs>
     <tabs>Batch_Job_Schedule__c</tabs>
