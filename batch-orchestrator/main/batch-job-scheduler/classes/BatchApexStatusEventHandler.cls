@@ -1,3 +1,13 @@
+/**
+ * This class is part of the sfdx-batch-orchestrator package, released under the MIT license.
+ *
+ * @description       : Flow Control for the Trigger on Batch Apex Status Event
+ * @author            : Dennis Grzyb
+ * @group             : Scheduler
+ * @last modified on  : 2021-10-12
+ * @last modified by  : Dennis Grzyb
+ **/
+
 public without sharing class BatchApexStatusEventHandler extends TriggerHandlerExtension {
     BatchApexStatusEventHelper helper;
     String lastReplayId;
@@ -8,9 +18,9 @@ public without sharing class BatchApexStatusEventHandler extends TriggerHandlerE
     }
 
     public override void bulkAfter() {
+        helper.createParentLogsFromSObjectJSON();
         helper.getApexJobs();
         helper.getParentLogs();
-        helper.createParentLogsFromSObjectJSON();
     }
 
     public override void afterInsert(SObject newSObject) {

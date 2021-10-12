@@ -1,3 +1,13 @@
+/**
+ * This class is part of the sfdx-batch-orchestrator package, released under the MIT license.
+ *
+ * @description       : Helper Class for Trigger Handler on Batch Apex Status Event
+ * @author            : Dennis Grzyb
+ * @group             : Scheduler
+ * @last modified on  : 2021-10-12
+ * @last modified by  : Dennis Grzyb
+ **/
+
 public with sharing class BatchApexStatusEventHelper {
     List<BatchApexStatusEvent__e> triggerNew;
     Map<Id, AsyncApexJob> relevantApexJobs = new Map<Id, AsyncApexJob>();
@@ -103,7 +113,7 @@ public with sharing class BatchApexStatusEventHelper {
             AsyncApexJob apexJob = relevantApexJobs.get(childLog.AsyncApexJobId__c);
 
             //Increase failed and successful Batches for each Successful Execute Log
-            if (parentLog.Context__c == 'Execute') {
+            if (childLog.Context__c == 'EXECUTE') {
                 switch on childLog.Result__c {
                     when 'Error' {
                         parentLog.FailedBatches__c += 1;

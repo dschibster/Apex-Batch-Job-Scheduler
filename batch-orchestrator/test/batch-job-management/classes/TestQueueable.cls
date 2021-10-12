@@ -8,12 +8,14 @@
  * @last modified by  : dschibster
  **/
 
-@isTest
 public with sharing class TestQueueable extends BatchJobBase implements Queueable {
     public testqueueable() {
     }
 
     public void execute(QueueableContext QC) {
         System.attachFinalizer(this);
+        super.startLogging(QC?.getJobId());
+
+        super.logInformation(QC?.getJobId(), 'Testing Queueable Logging');
     }
 }

@@ -1,3 +1,13 @@
+/**
+ * This class is part of the sfdx-batch-orchestrator package, released under the MIT license.
+ *
+ * @description       : Builder class for Batch Apex Status Event
+ * @author            : Dennis Grzyb
+ * @group             : Scheduler
+ * @last modified on  : 2021-10-12
+ * @last modified by  : Dennis Grzyb
+ **/
+
 public with sharing class BatchApexStatusEventBuilder {
     BatchApexStatusEvent__e statusEvent;
 

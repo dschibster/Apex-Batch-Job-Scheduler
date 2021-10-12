@@ -62,4 +62,25 @@ public with sharing class BatchJobBaseTest {
             'No Legacy Log was created'
         );
     }
+
+    @isTest
+    static void shouldCreateErrorLogs() {
+        BatchJobSchedulerTestDataFactory.createBatchSchedulerContext();
+
+        try {
+            Test.startTest();
+            BatchJobBase enhancedLoggingBatchJob = (BatchJobBase) new TestBatchJobForceError();
+            enhancedLoggingBatchJob.enhancedLoggingEnabled = true;
+            enhancedLoggingBatchJob.jobType = 'Batchable';
+            enhancedLoggingBatchJob.className = 'TestBatchJobForceError';
+            Id asyncJobId = enhancedLoggingBatchJob.enqueue(3);
+            Test.stopTest();
+        } catch (Exception e) {
+            //silent failure for Platform Event publishing
+        }
+        Test.getEventBus().deliver(); //this delivers the Error Event
+        Test.getEventBus().deliver(); //this delivers the new Status Event
+
+        System.assertEquals(1, [SELECT COUNT() FROM Batch_Job_Log__c WHERE Result__c = 'Error'], 'No Error Log was created');
+    }
 }

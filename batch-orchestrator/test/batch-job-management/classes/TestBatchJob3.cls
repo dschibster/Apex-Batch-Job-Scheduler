@@ -33,7 +33,7 @@ public with sharing class TestBatchJob3 extends BatchJobBase implements Database
     }
 
     public void execute(Database.BatchableContext BC, List<Account> scope) {
-        super.logBatchInformation(BC?.getJobId(), 'Test');
+        super.logInformation(BC?.getJobId(), 'Test');
         for (Account account : scope) {
             account.Type = 'Prospect';
         }
