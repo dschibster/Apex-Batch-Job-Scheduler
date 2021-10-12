@@ -1,13 +1,14 @@
 {
-  "orgName": "dschib company",
-  "edition": "Developer",
-  "features": ["EnableSetPasswordInApi","MultiCurrency"],
-  "settings": {
-    "lightningExperienceSettings": {
-      "enableS1DesktopEnabled": true
-    },
-    "mobileSettings": {
-      "enableS1EncryptedStoragePref2": false
+    "orgName": "dschib company",
+    "edition": "Developer",
+    "features": ["EnableSetPasswordInApi", "MultiCurrency"],
+    "language": "en_US",
+    "settings": {
+        "lightningExperienceSettings": {
+            "enableS1DesktopEnabled": true
+        },
+        "mobileSettings": {
+            "enableS1EncryptedStoragePref2": false
+        }
     }
-  }
 }

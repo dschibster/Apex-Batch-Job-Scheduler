@@ -1,5 +1,5 @@
 /**
- * This class is part of the sfdx-batch-scheduler-framework package, released under the MIT license.
+ * This class is part of the sfdx-batch-orchestrator package, released under the MIT license.
  *
  * @description       : Apex Controller responsible for scheduling an entire Schedule ad-hoc.
  * @author            : dschibster

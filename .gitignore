@@ -24,7 +24,7 @@ yarn-error.log*
 
 # Dependency directories
 node_modules/
-package-lock.json
+.vim-force.com
 
 # Eslint cache
 .eslintcache

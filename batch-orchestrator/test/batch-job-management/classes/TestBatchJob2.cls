@@ -39,6 +39,6 @@ public with sharing class TestBatchJob2 extends BatchJobBase implements Database
     }
 
     public void finish(Database.BatchableContext BC) {
-        super.finishBatch(BC.getJobId());
+        super.finishBatch(BC?.getJobId());
     }
 }

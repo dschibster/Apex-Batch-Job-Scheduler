@@ -1,8 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Cron_Trigger_Id__c</fullName>
     <description>Scheduled Job Cron Trigger Id</description>
-    <encryptionScheme>None</encryptionScheme>
     <externalId>false</externalId>
     <inlineHelpText>Scheduled Job Cron Trigger Id</inlineHelpText>
     <label>Cron Trigger Id</label>

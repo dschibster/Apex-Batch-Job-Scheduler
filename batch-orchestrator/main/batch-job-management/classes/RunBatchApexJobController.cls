@@ -1,5 +1,5 @@
 /**
- * This class is part of the sfdx-batch-scheduler-framework package, released under the MIT license.
+ * This class is part of the sfdx-batch-orchestrator package, released under the MIT license.
  *
  * @description       : Apex Controller responsible for Running a Single Apex Job from the Related List.
  * @author            : dschibster
@@ -14,7 +14,9 @@ public with sharing class RunBatchApexJobController {
 
     public RunBatchApexJobController(ApexPages.StandardController stdCtrl) {
         if (!Test.isRunningTest()) {
-            stdCtrl.addFields(new List<String>{ 'Batch_Class_Name__c', 'Batch_Job_Schedule__c', 'Batch_Size__c', 'RecordType.DeveloperName' });
+            stdCtrl.addFields(
+                new List<String>{ 'Batch_Class_Name__c', 'Batch_Job_Schedule__c', 'EnhancedLogging__c', 'Batch_Size__c', 'RecordType.DeveloperName' }
+            );
         }
         Batch_Apex_Job__c batchApexJob = (Batch_Apex_Job__c) stdCtrl.getRecord();
 
@@ -23,6 +25,8 @@ public with sharing class RunBatchApexJobController {
         batchJobToRun.executeNextJob = false;
         batchJobToRun.jobId = batchApexJob.Id;
         batchJobToRun.scheduleId = batchApexJob.Batch_Job_Schedule__c;
+        batchJobToRun.className = batchApexJob.Batch_Class_Name__c;
+        batchJobToRun.enhancedLoggingEnabled = batchApexJob.EnhancedLogging__c;
 
         jobRecord = batchApexJob;
     }

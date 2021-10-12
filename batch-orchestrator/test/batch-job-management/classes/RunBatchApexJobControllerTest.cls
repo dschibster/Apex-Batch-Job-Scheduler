@@ -1,5 +1,5 @@
 /**
- * This class is part of the sfdx-batch-scheduler-framework package, released under the MIT license.
+ * This class is part of the sfdx-batch-orchestrator package, released under the MIT license.
  *
  * @description       : Test Class that verifies a Batch Job runs when fired via Visualforce Page
  * @author            : dschibster
@@ -18,7 +18,7 @@ public with sharing class RunBatchApexJobControllerTest {
     @isTest
     static void runJobFromController() {
         Batch_Apex_Job__c firstJob = [
-            SELECT Id, Batch_Class_Name__c, Batch_Job_Schedule__c, Batch_Size__c, RecordType.DeveloperName
+            SELECT Id, Batch_Class_Name__c, Batch_Job_Schedule__c, Batch_Size__c, RecordType.DeveloperName, EnhancedLogging__c
             FROM Batch_Apex_Job__c
             LIMIT 1
         ];

@@ -1,5 +1,5 @@
 /**
- * This class is part of the sfdx-batch-scheduler-framework package, released under the MIT license.
+ * This class is part of the sfdx-batch-orchestrator package, released under the MIT license.
  *
  * @description       : Trigger Factory Handler for Batch_Job_Schedule__c
  * @author            : dschibster

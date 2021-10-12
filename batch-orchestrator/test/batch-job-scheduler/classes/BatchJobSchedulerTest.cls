@@ -143,14 +143,6 @@ public class BatchJobSchedulerTest {
     }
 
     @isTest
-    static void testlogBatchJob() {
-        BatchJobHelper.logBatchJob('batchJobName', System.now(), 'errorMessages');
-
-        List<Batch_Job_Log__c> logs = [SELECT Id FROM Batch_Job_Log__c];
-        System.assertEquals(1, logs.size(), 'Log wasn\'t created');
-    }
-
-    @isTest
     static void testBatchJob1() {
         BatchJobBase testBatchJob1 = (BatchJobBase) new TestBatchJob1();
         testBatchJob1.jobType = 'Batchable';

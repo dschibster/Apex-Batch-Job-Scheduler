@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <fullName>Execution_Result__c</fullName>
-    <encryptionScheme>None</encryptionScheme>
     <externalId>false</externalId>
-    <label>Execution Result</label>
+    <label>Message</label>
     <length>32768</length>
     <trackTrending>false</trackTrending>
     <type>LongTextArea</type>
