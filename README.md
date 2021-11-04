@@ -53,7 +53,7 @@ This package requires <a href="https://github.com/dschibster/sfdx-trigger-factor
 
 The functionality of the app hinges on the use of `BatchJobBase` in the Batch Jobs you want to run. Additionally, each of your Batch Jobs you want to orchestrate needs to be able to run off of a no-parameter constructor. In practice it can look something like this:
 
-```
+```java
 public class YourBatchJob extends BatchJobBase implements Database.Batchable<SObject>{
 
   public YourBatchJob(){
@@ -66,7 +66,7 @@ public class YourBatchJob extends BatchJobBase implements Database.Batchable<SOb
 
 If you need parameter to be passed into your constructor to properly run your Job, you can make use of constructor overloading to call `this()` with a set of standard values that you can get via methods of your choosing.
 
-```
+```java
 public YourBatchJob(){
   this(fetchStandardInitialValue());
 }
