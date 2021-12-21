@@ -52,6 +52,9 @@ public with sharing class BatchApexStatusEventHelper {
 
     public Batch_Job_Log__c createChildLogRecord(BatchApexStatusEvent__e statusEvent) {
         Batch_Job_Log__c parentLog = parentLogsByAsyncJobId.get(statusEvent.AsyncApexJobId__c);
+        if (parentLog == null && EventBus.TriggerContext.currentContext().retries < 9) {
+            throw new EventBus.RetryableException('Concurrency Issue, trying again.');
+        }
         Batch_Job_Log__c childLog = createChildLogFromEvent(statusEvent);
         childLog.Parent_Log__c = parentLog.Id;
 
