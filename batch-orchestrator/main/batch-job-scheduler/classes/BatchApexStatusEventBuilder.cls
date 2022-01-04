@@ -36,7 +36,7 @@ public with sharing class BatchApexStatusEventBuilder {
     }
 
     public BatchApexStatusEventBuilder withMessage(String message) {
-        this.statusEvent.Message__c = message;
+        this.statusEvent.MessageLong__c = message;
         return this;
     }
 

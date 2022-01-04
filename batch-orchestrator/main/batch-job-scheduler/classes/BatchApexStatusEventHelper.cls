@@ -101,7 +101,7 @@ public with sharing class BatchApexStatusEventHelper {
             SOQLRowsUsed__c = evt.SOQLRowsUsed__c,
             Context__c = evt.Context__c,
             Scope__c = evt.Scope__c,
-            Execution_Result__c = evt.Message__c,
+            Execution_Result__c = evt.MessageLong__c,
             Result__c = evt.Status__c,
             Timestamp__c = evt.Timestamp__c,
             ClassName__c = evt.ClassName__c,

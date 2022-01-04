@@ -191,7 +191,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BatchApexStatusEvent__e.Message__c</field>
+        <field>BatchApexStatusEvent__e.MessageLong__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1292,8 +1292,9 @@
         <enabled>true</enabled>
         <name>TransferAnyLead</name>
     </userPermissions>
-    <enabled>true</enabled>
-    <name>UseTeamReassignWizards</name>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>UseTeamReassignWizards</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
