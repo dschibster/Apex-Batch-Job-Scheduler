@@ -3,8 +3,8 @@
         {
             "path": "batch-orchestrator",
             "package": "sfdx-batch-orchestrator",
-            "versionName": "ver 1.2",
-            "versionNumber": "1.2.0.NEXT",
+            "versionName": "ver 1.2.1",
+            "versionNumber": "1.2.1.NEXT",
             "default": true,
             "branch": "master",
             "dependencies": [
@@ -24,6 +24,7 @@
         "sfdx-batch-orchestrator@1.0.0.0": "04t09000000ibsmAAA",
         "sfdx-batch-orchestrator@1.1.0.0": "04t09000000iih4AAA",
         "sfdx-batch-orchestrator@1.1.0.1": "04t09000000ijH0AAI",
-        "sfdx-batch-orchestrator@1.2.0.0": "04t09000000ijMkAAI"
+        "sfdx-batch-orchestrator@1.2.0.0": "04t09000000ijMkAAI",
+        "sfdx-batch-orchestrator@1.2.1.0": "04t09000000ijMpAAI"
     }
 }
