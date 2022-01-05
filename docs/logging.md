@@ -8,7 +8,7 @@ The only thing that is being logged is the status of the `AsyncApexJob` record t
 The logs get created in `super.finishBatch()` when `EnhancedLogging__c` is set to **false** for the `Batch_Apex_Job__c` record. As this is already necessary for the framework to run, there is no additional effort involved.
 
 ## Enhanced logging
-Enhanced Logging leverages Platform Event to create hierarchical logs. This means that under one Parent Log, you will find parent logs, ideally one for each of the batches that have run (including, optionally, a few information logs).
+Enhanced Logging leverages Platform Events to create hierarchical logs. This means that under one Parent Log, you will find several different child logs, ideally one for each of the batches that have run (including, optionally, a few information logs).
 
 In order to leverage enhanced Logging, here is what you need to do:
 
