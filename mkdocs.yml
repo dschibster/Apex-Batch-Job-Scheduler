@@ -1,6 +1,7 @@
 site_name: SFDX Batch Orchestrator
 repo_url: https://github.com/dschibster/sfdx-batch-orchestrator
 repo_name: dschibster/sfdx-batch-orchestrator
+edit_uri: ""
 
 nav:
     - Introduction: 'index.md'
