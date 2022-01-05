@@ -4,7 +4,7 @@ repo_name: dschibster/sfdx-batch-orchestrator
 
 theme:
   name: material
-  logo: resources/batchorchestratorlogo.png
+  logo: https://github.com/dschibster/sfdx-batch-orchestrator/master/resources/batchorchestratorlogo.png
 
   palette: 
     scheme: slate
