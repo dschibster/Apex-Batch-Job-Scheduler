@@ -7,7 +7,7 @@ SFDX Batch Orchestrator runs based on a generic Scheduler class which in turn is
 Depending on if you use [Enhanced Logging](logging.md), the implementation of the `BatchJobBase` class differs slightly. In a standard case, you 
 need only extend the `BatchJobBase` class:
 
-**Important:** The Batch Job requires a no-parameter constructor for generic scheduling purposes. You can however have call another constructor inside to get your parameters when needed.
+**Important:** The Batch Job requires a no-parameter constructor for generic scheduling purposes. You can however have it call another constructor inside with constructor overloading to get your parameters when needed.
 
 ``` java
 public class YourBatchJob extends BatchJobBase implements Database.Batchable<SObject>{
