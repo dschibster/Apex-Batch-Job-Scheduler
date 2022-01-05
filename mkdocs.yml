@@ -4,3 +4,5 @@ theme:
 
   palette: 
     scheme: slate
+
+  repo_url: https://github.com/squidfunk/mkdocs-material
