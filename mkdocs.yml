@@ -10,11 +10,17 @@ nav:
 
 theme:
   name: material
-  logo: https://github.com/dschibster/sfdx-batch-orchestrator/master/resources/batchorchestratorlogo.png
+  logo: https://github.com/dschibster/sfdx-batch-orchestrator/blob/master/resources/batchorchestratorlogo.png?raw=true
 
   palette: 
     scheme: slate
     primary: blue
 
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
 
   
