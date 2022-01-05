@@ -2,7 +2,7 @@
 
 SFDX Batch Orchestrator runs based on a generic Scheduler class which in turn is able to invoke our separate Jobs. For this, we need to adjust our Batch Jobs to be compatible with the Base class. 
 
-## Batch jobs
+## Batch Jobs
 
 Depending on if you use [Enhanced Logging](logging.md), the implementation of the `BatchJobBase` class differs slightly. In a standard case, you 
 need only extend the `BatchJobBase` class:
@@ -14,6 +14,22 @@ public class YourBatchJob extends BatchJobBase implements Database.Batchable<SOb
 
   public YourBatchJob(){
 
+  }
+```
+
+``` java
+public class YourBatchJob extends BatchJobBase implements Database.Batchable<SObject>{
+
+  public YourBatchJob(){
+    this(getStartingParameter());
+  }
+
+  public YourBatchJob(String necessaryParameter){
+
+  }
+
+  public static String getStartingParameter(){
+    return 'example';
   }
 ```
 
