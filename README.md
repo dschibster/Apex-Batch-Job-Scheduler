@@ -5,7 +5,7 @@
      
 # Installation
 <div>
-<span><a href="https://login.salesforce.com/packaging/installPackage.apexp?p0=04t09000000ijMpAAI">
+<span><a href="https://login.salesforce.com/packaging/installPackage.apexp?p0=04t09000000ijMpAAI" target="_blank">
   <img alt="Deploy to Salesforce"
        src="https://github.com/dschibster/sfdx-batch-orchestrator/blob/master/resources/deploy_unlocked.png">
 </a>
@@ -18,7 +18,7 @@
 <div>
 For your Sandbox:
   <div><span>
-    <a href="https://test.salesforce.com/packaging/installPackage.apexp?p0=04t09000000ijMpAAI">
+    <a href="https://test.salesforce.com/packaging/installPackage.apexp?p0=04t09000000ijMpAAI" target="_blank">
   <img alt="Deploy to Salesforce"
        src="https://github.com/dschibster/sfdx-batch-orchestrator/blob/master/resources/deploy_unlocked.png">
 </a></span><div>

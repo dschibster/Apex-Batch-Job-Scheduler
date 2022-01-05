@@ -75,6 +75,18 @@ public virtual with sharing class BatchJobBase implements Finalizer {
         BatchJobLogger.logExecute(chunkScope, asyncApexJobId, 'Success', message);
     }
 
+    public void logStartInformation(Id asyncApexJobId, String message) {
+        if (enhancedLoggingEnabled) {
+            BatchJobLogger.log(null, asyncApexJobId, 'Information', message, 'START');
+        }
+    }
+
+    public void logFinishInformation(Id asyncApexJobId, String message) {
+        if (enhancedLoggingEnabled) {
+            BatchJobLogger.log(null, asyncApexJobId, 'Information', message, 'FINISH');
+        }
+    }
+
     public virtual void finishBatch(Id asyncApexJobId) {
         if (enhancedLoggingEnabled) {
             if (jobType == 'Batchable') {
