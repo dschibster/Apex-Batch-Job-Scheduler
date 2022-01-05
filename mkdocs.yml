@@ -1,7 +1,7 @@
 site_name: SFDX Batch Orchestrator
 theme:
   name: material
-  
+
   palette: 
     scheme: slate
-    primary: blue grey
+    primary: blue
