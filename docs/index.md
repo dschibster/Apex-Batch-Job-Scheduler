@@ -1,17 +1,4 @@
-# Welcome to MkDocs
+# Welcome to the SFDX Batch Orchestrator
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+Fancy meeting you here! I hope you enjoy your stay in this documentation. The SFDX Batch Orchestrator is a tool to make scheduling of Apex Jobs more handy than fiddling around with Anonymous Apex and the "Scheudled Jobs" view. With it, you can configure your Jobs with ease, using just the Salesforce UI and some records.
 
-## Commands
-
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
-
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
