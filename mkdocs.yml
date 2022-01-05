@@ -1,9 +1,14 @@
 site_name: SFDX Batch Orchestrator
+repo_url: https://github.com/dschibster/sfdx-batch-orchestrator
+repo_name: dschibster/sfdx-batch-orchestrator
+
 theme:
   name: material
+  logo: resources/batchorchestratorlogo.png
 
   palette: 
     scheme: slate
     primary: blue
 
-  repo_url: https://github.com/dschibster/sfdx-batch-orchestrator
+
+  
