@@ -24,7 +24,7 @@ public Database.QueryLocator start(Database.BatchableContext BC) {
 ```
 
 
-### Methods to start Logging and re
+### Methods to start Logging Information and Batch Results
 #### Start Method
 In order to start logging, your `start()` method needs to call `super.startLogging(BC?.getJobId())`. This will create the parent Log and a note that the Batch Job has started. In the end, with enhanced Logging enabled, `super.finishBatch()` will signalize the Batch Job has ended.
 
