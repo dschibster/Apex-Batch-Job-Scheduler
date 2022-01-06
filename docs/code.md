@@ -17,21 +17,6 @@ public class YourBatchJob extends BatchJobBase implements Database.Batchable<SOb
   }
 ```
 
-``` java
-public class YourBatchJob extends BatchJobBase implements Database.Batchable<SObject>{
-
-  public YourBatchJob(){
-    this(getStartingParameter());
-  }
-
-  public YourBatchJob(String necessaryParameter){
-
-  }
-
-  public static String getStartingParameter(){
-    return 'example';
-  }
-```
 
 In the end, the last thing you need to do is call `super.finishBatch(ctx?.getJobId())` with `ctx` being the name of your Database.BatchableContext variable. This needs to happen in the `finish()` method of your Batch Job.
 
@@ -56,6 +41,22 @@ If you need parameter to be passed into your constructor to properly run your Jo
 public YourBatchJob(){
   this(fetchStandardInitialValue());
 }
+```
+
+``` java
+public class YourBatchJob extends BatchJobBase implements Database.Batchable<SObject>{
+
+  public YourBatchJob(){
+    this(getStartingParameter());
+  }
+
+  public YourBatchJob(String necessaryParameter){
+
+  }
+
+  public static String getStartingParameter(){
+    return 'example';
+  }
 ```
 
 This will make sure to invoke the Batch Job with the necessary parameters.
