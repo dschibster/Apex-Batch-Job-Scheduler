@@ -8,12 +8,8 @@
  * @last modified by  : Dennis Grzyb
  **/
 
-public with sharing class BatchApexJobHandler extends TriggerHandlerExtension {
+public with sharing class BatchApexJobHandler extends BatchOrchTriggerExecutor {
     public BatchApexJobHelper helper = BatchApexJobHelper.getInstance();
-
-    public BatchApexJobHandler() {
-        super();
-    }
 
     public override void beforeInsert(SObject so) {
         Batch_Apex_Job__c apexJob = (Batch_Apex_Job__c) so;

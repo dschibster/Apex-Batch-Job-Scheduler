@@ -8,13 +8,13 @@
  * @last modified by  : Dennis Grzyb
  **/
 
-public without sharing class BatchApexStatusEventHandler extends TriggerHandlerExtension {
+public without sharing class BatchApexStatusEventHandler extends BatchOrchTriggerExecutor {
     BatchApexStatusEventHelper helper;
     String lastReplayId;
 
     public BatchApexStatusEventHandler() {
         super();
-        helper = new BatchApexStatusEventHelper(Trigger.new);
+        helper = new BatchApexStatusEventHelper(triggerNew);
     }
 
     public override void bulkAfter() {
