@@ -41,4 +41,4 @@ jobs:
             - name: Create new Package version and Promote
               run: |
                   chmod +x scripts/packagepromotion.sh
-                  ./packagepromotion.sh
+                  ./scripts/packagepromotion.sh
