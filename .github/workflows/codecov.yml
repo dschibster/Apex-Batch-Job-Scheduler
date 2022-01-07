@@ -4,12 +4,12 @@ on:
         branches:
             - master
         paths:
-            - "batch-orchestrator/*"
+            - "batch-orchestrator/**"
     pull_request:
         branches:
             - master
         paths:
-            - "batch-orchestrator/*"
+            - "batch-orchestrator/**"
 
 jobs:
     build:
