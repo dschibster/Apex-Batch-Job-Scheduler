@@ -35,6 +35,7 @@ public with sharing class RunBatchApexJobController {
         batchJobToRun.enqueue(Integer.valueOf(jobRecord.Batch_Size__c));
         PageReference ref = new PageReference('/' + jobRecord.Batch_Job_Schedule__c);
         ref.setRedirect(true);
+
         return ref;
     }
 }
