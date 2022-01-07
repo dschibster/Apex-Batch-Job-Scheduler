@@ -1,32 +1,34 @@
 name: code-coverage
 on:
-  push:
-    branches: 
-      - master
-  pull_request:
-    branches:
-      - master
-      
+    push:
+        branches:
+            - master
+    pull_request:
+        branches:
+            - master
+    paths:
+        - "batch-orchestrator/*"
+
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v1
-    - name: Install Dependencies
-      run: npm install sfdx-cli
-    - name: Populate auth file
-      run: 'echo "${{ secrets.SFDX_AUTH_URL }}" > ./SALESFORCE_AUTH_URL.txt'
-    - name: Authenticate Dev Hub
-      run: 'node_modules/sfdx-cli/bin/run force:auth:sfdxurl:store -f ./SALESFORCE_AUTH_URL.txt -a devhub -d'
-    - name: Create Scratch Org
-      run: node_modules/sfdx-cli/bin/run force:org:create --targetdevhubusername devhub --setdefaultusername --definitionfile config/project-scratch-def.json --setalias ciorg --durationdays 1
-    - name: Deploy source
-      run: node_modules/sfdx-cli/bin/run force:source:push
-    - name: Run Apex tests
-      run: node_modules/sfdx-cli/bin/run force:apex:test:run --codecoverage --resultformat human -d ./
-    - name: Upload code coverage for Apex to Codecov.io
-      uses: codecov/codecov-action@v1
-      with:
-        flags: Apex
-    - name: Delete Scratch Org
-      run: node_modules/sfdx-cli/bin/run force:org:delete --noprompt
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v1
+            - name: Install Dependencies
+              run: npm install sfdx-cli
+            - name: Populate auth file
+              run: 'echo "${{ secrets.SFDX_AUTH_URL }}" > ./SALESFORCE_AUTH_URL.txt'
+            - name: Authenticate Dev Hub
+              run: "node_modules/sfdx-cli/bin/run force:auth:sfdxurl:store -f ./SALESFORCE_AUTH_URL.txt -a devhub -d"
+            - name: Create Scratch Org
+              run: node_modules/sfdx-cli/bin/run force:org:create --targetdevhubusername devhub --setdefaultusername --definitionfile config/project-scratch-def.json --setalias ciorg --durationdays 1
+            - name: Deploy source
+              run: node_modules/sfdx-cli/bin/run force:source:push
+            - name: Run Apex tests
+              run: node_modules/sfdx-cli/bin/run force:apex:test:run --codecoverage --resultformat human -d ./
+            - name: Upload code coverage for Apex to Codecov.io
+              uses: codecov/codecov-action@v1
+              with:
+                  flags: Apex
+            - name: Delete Scratch Org
+              run: node_modules/sfdx-cli/bin/run force:org:delete --noprompt
