@@ -1,5 +1,7 @@
-name: code-coverage
+name: Code Coverage and Release
+
 on:
+    workflow_dispatch:
     push:
         branches:
             - master
@@ -10,6 +12,8 @@ on:
             - master
         paths:
             - "batch-orchestrator/**"
+env:
+    PACKAGE_ID: ${{ secrets.PACKAGE_ID }}
 
 jobs:
     build:
@@ -34,3 +38,7 @@ jobs:
                   flags: Apex
             - name: Delete Scratch Org
               run: node_modules/sfdx-cli/bin/run force:org:delete --noprompt
+            - name: Create new Package version and Promote
+              run: |
+                  chmod +x scripts/packagepromotion.sh
+                  ./packagepromotion.sh
