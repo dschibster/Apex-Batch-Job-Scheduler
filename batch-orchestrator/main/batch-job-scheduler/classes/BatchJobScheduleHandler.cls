@@ -8,12 +8,8 @@
  * @last modified by  : dschibster
  **/
 
-public without sharing class BatchJobScheduleHandler extends TriggerHandlerExtension {
+public without sharing class BatchJobScheduleHandler extends BatchOrchTriggerExecutor {
     public static BatchJobScheduleHelper helper = BatchJobScheduleHelper.getInstance();
-
-    public BatchJobScheduleHandler() {
-        super();
-    }
 
     public override void bulkBefore() {
         if (Trigger.isInsert || Trigger.isUpdate) {
