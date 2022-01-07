@@ -3,12 +3,13 @@ on:
     push:
         branches:
             - master
+        paths:
+            - "batch-orchestrator/*"
     pull_request:
         branches:
             - master
-    paths:
-        - "batch-orchestrator/*"
-
+        paths:
+            - "batch-orchestrator/*"
 jobs:
     build:
         runs-on: ubuntu-latest
