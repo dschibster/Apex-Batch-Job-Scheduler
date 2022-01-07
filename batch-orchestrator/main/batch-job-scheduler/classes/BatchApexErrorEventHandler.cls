@@ -7,13 +7,13 @@
  * @last modified on  : 2021-10-12
  * @last modified by  : Dennis Grzyb
  **/
-public with sharing class BatchApexErrorEventHandler extends TriggerHandlerExtension {
+public with sharing class BatchApexErrorEventHandler extends BatchOrchTriggerExecutor {
     BatchApexErrorEventHelper helper;
     String lastReplayId;
 
     public BatchApexErrorEventHandler() {
         super();
-        helper = new BatchApexErrorEventHelper((List<BatchApexErrorEvent>) Trigger.new);
+        helper = new BatchApexErrorEventHelper((List<BatchApexErrorEvent>) triggerNew);
     }
 
     public override void bulkAfter() {
