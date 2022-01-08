@@ -5,8 +5,7 @@
             "package": "sfdx-batch-orchestrator",
             "versionName": "ver 1.3.0",
             "versionNumber": "1.3.0.0",
-            "default": true,
-            "branch": "master"
+            "default": true
         }
     ],
     "name": "sfdx-batch-orchestrator",
