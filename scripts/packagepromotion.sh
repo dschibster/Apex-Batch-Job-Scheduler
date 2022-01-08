@@ -31,13 +31,15 @@ echo "$( NEWPUBLICVERSIONNUMBER=$"$NEWPUBLICVERSIONNUMBER"  jq '.packageDirector
 
 # Create a new package version (with the previously incremented package version) and import the package version id for further use.
 echo "Creating new package version"
-sfdx force:package:version:create -p $PACKAGE_ID -f config/project-scratch-def.json -k nordzuckerms123 -c --json -w 30 | jq -r '.result.SubscriberPackageVersionId' > packageversionid.txt
+node_modules/sfdx-cli/bin/run force:package:version:create -p $PACKAGE_ID -f config/project-scratch-def.json -k nordzuckerms123 -c --json -w 30 | jq -r '.result.SubscriberPackageVersionId' > packageversionid.txt
+
 PACKAGEVERSIONID=$( cat packageversionId.txt )
 echo "New Package Version Id: $PACKAGEVERSIONID"
 
 #This promotes the package version
 echo "Promoting Package Version"
-sfdx force:package:version:promote -p $PACKAGEVERSIONID --noprompt
+node_modules/sfdx-cli/bin/run force:package:version:promote -p $PACKAGEVERSIONID --noprompt
+
 
 echo "Updating docs"
 #updates docs with new installation id
@@ -52,3 +54,4 @@ git add sfdx-project.json
 git config --local user.email "action@github.com"
 git config --local user.name "GitHub Action Bot"
 git commit -m "Update Package Version with GitHub Action"
+git push
