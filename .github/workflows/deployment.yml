@@ -2,11 +2,6 @@ name: Code Coverage and Release
 
 on:
     workflow_dispatch:
-    push:
-        branches:
-            - master
-        paths:
-            - "batch-orchestrator/**"
     pull_request:
         branches:
             - master

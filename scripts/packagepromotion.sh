@@ -16,7 +16,7 @@ cut_patch_version(){
     echo $(local IFS=$delimiter ; echo "${array[*]}")
 }
 
-PACKAGE_ID=$( q -r 'first(.packageAliases[])' sfdx-project.json )
+PACKAGE_ID=$( jq -r 'first(.packageAliases[])' sfdx-project.json )
 
 VERSIONNUMBER=$( jq -r '.packageDirectories[0].versionNumber' sfdx-project.json )
 echo "Current Version: $VERSIONNUMBER"
@@ -33,10 +33,19 @@ echo "$( NEWPUBLICVERSIONNUMBER=$"$NEWPUBLICVERSIONNUMBER"  jq '.packageDirector
 
 # Create a new package version (with the previously incremented package version) and import the package version id for further use.
 echo "Creating new package version"
-node_modules/sfdx-cli/bin/run force:package:version:create -p $PACKAGE_ID -f config/project-scratch-def.json -k nordzuckerms123 -c --json -w 30 | jq -r '.result.SubscriberPackageVersionId' > packageversionid.txt
+node_modules/sfdx-cli/bin/run force:package:version:create -p $PACKAGE_ID -f config/project-scratch-def.json -k nordzuckerms123 -c --json -w 30 > result.json
 
-PACKAGEVERSIONID=$( cat packageversionId.txt )
+cat result.json
+cat result.json | jq '.result.SubscriberPackageVersionId' > packgeversionid.txt
+
+PACKAGEVERSIONID=$( cat packgeversionid.txt )
+if [[ "$PACKAGEVERSIONID" == "null" ]]; then    
+    echo "Package could not be created"
+    exit 1
+fi
+
 echo "New Package Version Id: $PACKAGEVERSIONID"
+
 
 #This promotes the package version
 echo "Promoting Package Version"
@@ -57,3 +66,4 @@ git config --local user.email "action@github.com"
 git config --local user.name "GitHub Action Bot"
 git commit -m "Update Package Version with GitHub Action"
 git push
+exit 0
