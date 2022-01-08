@@ -33,7 +33,7 @@ echo "$( NEWPUBLICVERSIONNUMBER=$"$NEWPUBLICVERSIONNUMBER"  jq '.packageDirector
 
 # Create a new package version (with the previously incremented package version) and import the package version id for further use.
 echo "Creating new package version"
-node_modules/sfdx-cli/bin/run force:package:version:create -p $PACKAGE_ID -f config/project-scratch-def.json -k nordzuckerms123 -c --json -w 30 > result.json
+node_modules/sfdx-cli/bin/run force:package:version:create -p $PACKAGE_ID -f config/project-scratch-def.json -x -v devhub -c --json -w 30 > result.json
 
 cat result.json
 cat result.json | jq '.result.SubscriberPackageVersionId' > packgeversionid.txt
@@ -46,10 +46,12 @@ fi
 
 echo "New Package Version Id: $PACKAGEVERSIONID"
 
+sleep 5
+cat sfdx-project.json
 
 #This promotes the package version
 echo "Promoting Package Version"
-node_modules/sfdx-cli/bin/run force:package:version:promote -p $PACKAGEVERSIONID --noprompt
+node_modules/sfdx-cli/bin/run force:package:version:promote -p $PACKAGEVERSIONID --noprompt -v devhub
 
 
 echo "Updating docs"
