@@ -33,7 +33,7 @@ echo "$( NEWPUBLICVERSIONNUMBER=$"$NEWPUBLICVERSIONNUMBER"  jq '.packageDirector
 
 # Create a new package version (with the previously incremented package version) and import the package version id for further use.
 echo "Creating new package version"
-sfdx force:package:version:create -p $PACKAGE_ID -f config/project-scratch-def.json -x -v devhub -c --json -w 30 > result.json
+sfdx force:package:version:create -p $PACKAGE_ID -f config/project-scratch-def.json -x -v devhub -c --json -w 50 > result.json
 
 cat result.json
 cat result.json | jq '.result.SubscriberPackageVersionId' > packgeversionid.txt
