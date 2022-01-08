@@ -16,6 +16,8 @@ cut_patch_version(){
     echo $(local IFS=$delimiter ; echo "${array[*]}")
 }
 
+PACKAGE_ID=$( q -r 'first(.packageAliases[])' sfdx-project.json )
+
 VERSIONNUMBER=$( jq -r '.packageDirectories[0].versionNumber' sfdx-project.json )
 echo "Current Version: $VERSIONNUMBER"
 echo "A -1 Number means we are preparing for a .0 release!"

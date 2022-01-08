@@ -12,8 +12,6 @@ on:
             - master
         paths:
             - "batch-orchestrator/**"
-env:
-    PACKAGE_ID: ${{ secrets.PACKAGE_ID }}
 
 jobs:
     build:
