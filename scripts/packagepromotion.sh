@@ -36,7 +36,7 @@ echo "Creating new package version"
 sfdx force:package:version:create -p $PACKAGE_ID -f config/project-scratch-def.json -x -v devhub -c --json -w 50 > result.json
 
 cat result.json
-cat result.json | jq '.result.SubscriberPackageVersionId' > packgeversionid.txt
+cat result.json | jq -r '.result.SubscriberPackageVersionId' > packgeversionid.txt
 
 PACKAGEVERSIONID=$( cat packgeversionid.txt )
 if [[ "$PACKAGEVERSIONID" == "null" ]]; then    
@@ -46,7 +46,6 @@ fi
 
 echo "New Package Version Id: $PACKAGEVERSIONID"
 
-sleep 60
 cat sfdx-project.json
 
 #This promotes the package version
