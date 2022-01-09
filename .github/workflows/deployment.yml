@@ -21,18 +21,18 @@ jobs:
               run: 'echo "${{ secrets.SFDX_AUTH_URL }}" > ./SALESFORCE_AUTH_URL.txt'
             - name: Authenticate Dev Hub
               run: "sfdx force:auth:sfdxurl:store -f ./SALESFORCE_AUTH_URL.txt -a devhub -d"
-            #- name: Create Scratch Org
-            #  run: sfdx force:org:create --targetdevhubusername devhub --setdefaultusername --definitionfile config/project-scratch-def.json --setalias ciorg --durationdays 1
-            #- name: Deploy source
-            #  run: sfdx force:source:push
-            #- name: Run Apex tests
-            #  run: sfdx force:apex:test:run --codecoverage --resultformat human -d ./
-            #- name: Delete Scratch Org
-            #  run: sfdx force:org:delete --noprompt
-            #- name: Upload code coverage for Apex to Codecov.io
-            #  uses: codecov/codecov-action@v1
-            #  with:
-            #      flags: Apex
+            - name: Create Scratch Org
+              run: sfdx force:org:create --targetdevhubusername devhub --setdefaultusername --definitionfile config/project-scratch-def.json --setalias ciorg --durationdays 1
+            - name: Deploy source
+              run: sfdx force:source:push
+            - name: Run Apex tests
+              run: sfdx force:apex:test:run --codecoverage --resultformat human -d ./
+            - name: Delete Scratch Org
+              run: sfdx force:org:delete --noprompt
+            - name: Upload code coverage for Apex to Codecov.io
+              uses: codecov/codecov-action@v1
+              with:
+                  flags: Apex
             - name: Create new Package version and Promote
               run: |
                   chmod +x scripts/packagepromotion.sh
