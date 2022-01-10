@@ -39,7 +39,7 @@ This is a fork from the original <a href="https://github.com/ianhuang/Apex-Batch
 -   Flexible switching of Batch Sizes in case of scaling problems
 -   Logging of Batch Job results to see if they were successful
 -   Options to directly run any Batch Job or Schedule that is currently scheduled from the UI
--   **Enhanced Logging!** Now allows you to log information and successes/failures in a Batch Job. More information coming soon.
+-   **Enhanced Logging!** Now allows you to log information and successes/failures in a Batch Job. More information available in the Documentation.
 
 # Documentation
 
