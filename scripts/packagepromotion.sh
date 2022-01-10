@@ -1,3 +1,7 @@
+
+#!/usr/bin/env bash
+set -euo pipefail
+
 echo "Starting Script for Package Promotion"
 
 increment_version() {
