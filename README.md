@@ -3,6 +3,7 @@
 <p align="center"><sub><span>Icons (Clock, Database) made by <a href="https://www.flaticon.com/authors/dmitri13" title="dmitri13">dmitri13</a> and <a href="https://www.flaticon.com/authors/smashicons" title="dmitri13">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></span></sub></p>
      
 [![codecov](https://codecov.io/gh/dschibster/sfdx-batch-orchestrator/branch/master/graph/badge.svg?token=WPU1N1CNE8)](https://codecov.io/gh/dschibster/sfdx-batch-orchestrator)
+[![Code Coverage and Release](https://github.com/dschibster/sfdx-batch-orchestrator/actions/workflows/deployment.yml/badge.svg)](https://github.com/dschibster/sfdx-batch-orchestrator/actions/workflows/deployment.yml)
 
 # Installation
 
