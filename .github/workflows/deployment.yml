@@ -39,6 +39,9 @@ jobs:
               with:
                   flags: Apex
             - name: Create new Package version and Promote
+              # Currently only to be run when creating a PR toward master, in any other case we don't want to go that route.
+              # Can be adjusted in the future to only promote packages when merging, but create packages in a PR
+              if: github.base_ref == 'master' && github.actor == github.event.repository.owner.login
               run: |
                   chmod +x scripts/packagepromotion.sh
                   ./scripts/packagepromotion.sh
