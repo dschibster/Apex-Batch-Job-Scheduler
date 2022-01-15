@@ -1,5 +1,15 @@
+/**
+ * This class is part of the sfdx-batch-orchestrator package, released under the MIT license.
+ *
+ * @description       : Central class to call Batch Jobs and Schedules from anywhere in the System (currently only Apex)
+ * @author            : dschibster
+ * @group             : Batch Job Scheduler
+ * @last modified on  : 2022-01-15
+ * @last modified by  : dschibster
+ **/
+
 public without sharing class BatchOrchestrator {
-    public static void runBatchScheduleById(Id scheduleId) {
+    public static void runBatchSchedule(Id scheduleId) {
         BatchJobScheduler adhocSchedule = new BatchJobScheduler();
         adhocSchedule.batchJobs = adhocSchedule.loadActiveBatchJobsById(scheduleId);
         adhocSchedule.executeJobs();
@@ -11,6 +21,7 @@ public without sharing class BatchOrchestrator {
             FROM Batch_Apex_Job__c
             WHERE Id = :batchJobId
         ];
+        runBatchJob(batchApexJob);
     }
 
     public static void runBatchJob(Batch_Apex_Job__c batchApexJob) {

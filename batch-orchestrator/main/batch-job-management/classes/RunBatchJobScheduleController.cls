@@ -16,7 +16,7 @@ public with sharing class RunBatchJobScheduleController {
     }
 
     public PageReference runSchedule() {
-        BatchOrchestrator.runBatchScheduleById(scheduleRecord.Id);
+        BatchOrchestrator.runBatchSchedule(scheduleRecord.Id);
         PageReference ref = new PageReference('/' + scheduleRecord.Id);
         ref.setRedirect(true);
         return ref;
