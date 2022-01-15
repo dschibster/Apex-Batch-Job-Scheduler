@@ -4,6 +4,7 @@
      
 [![codecov](https://codecov.io/gh/dschibster/sfdx-batch-orchestrator/branch/master/graph/badge.svg?token=WPU1N1CNE8)](https://codecov.io/gh/dschibster/sfdx-batch-orchestrator)
 [![Code Coverage and Release](https://github.com/dschibster/sfdx-batch-orchestrator/actions/workflows/deployment.yml/badge.svg)](https://github.com/dschibster/sfdx-batch-orchestrator/actions/workflows/deployment.yml)
+[![Publish docs via GitHub Pages](https://github.com/dschibster/sfdx-batch-orchestrator/actions/workflows/mkdocs-deploy.yml/badge.svg)](https://github.com/dschibster/sfdx-batch-orchestrator/actions/workflows/mkdocs-deploy.yml)
 
 # Installation
 
