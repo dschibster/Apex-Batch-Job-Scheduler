@@ -2,8 +2,8 @@
 
 | Environment | Package Type | Install Link                                                                                    |
 | ----------- | ------------ | ----------------------------------------------------------------------------------------------- |
-| Production  | Unlocked     | [Click here](https://login.salesforce.com/packaging/installPackage.apexp?p0=04t09000000ijP5AAI) |
-| Sandbox     | Unlocked     | [Click here](https://test.salesforce.com/packaging/installPackage.apexp?p0=04t09000000ijP5AAI)  |
+| Production  | Unlocked     | [Click here](https://login.salesforce.com/packaging/installPackage.apexp?p0=04t09000000ijPFAAY) |
+| Sandbox     | Unlocked     | [Click here](https://test.salesforce.com/packaging/installPackage.apexp?p0=04t09000000ijPFAAY)  |
 | Production  | Unmanaged    | Refer to README in Repository                                                                   |
 
 Simply click on one of the Links to install the App (it's recommended to install the Unlocked Package to easily benefit from future updates). After this, assign the "Batch Job Scheduler" Permission Set to anyone who needs to access. Administrators automatically get access to the App.
