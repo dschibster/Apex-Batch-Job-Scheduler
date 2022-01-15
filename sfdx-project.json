@@ -3,8 +3,8 @@
         {
             "path": "batch-orchestrator",
             "package": "sfdx-batch-orchestrator",
-            "versionName": "ver. 1.3.2",
-            "versionNumber": "1.3.2.0",
+            "versionName": "ver. 1.3.3",
+            "versionNumber": "1.3.3.0",
             "default": true
         }
     ],
