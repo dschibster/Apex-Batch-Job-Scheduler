@@ -43,7 +43,7 @@ jobs:
             - name: Delete Scratch Org
               run: sfdx force:org:delete --noprompt
             - name: Upload code coverage for Apex to Codecov.io
-              uses: codecov/codecov-action@v1
+              uses: codecov/codecov-action@v2
               with:
                   flags: Apex
             - name: Increment Package Version in sfdx-project.json
@@ -53,6 +53,9 @@ jobs:
                   ./scripts/increment-package-version.sh
             - name: Create new Package version
               if: github.event.action != 'closed' && github.event_name == 'pull_request' && github.actor == github.event.repository.owner.login
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  REPO_NAME: $(( github.repository ))
               run: |
                   chmod +x scripts/create-new-package-verison.sh
                   ./scripts/create-new-package-verison.sh

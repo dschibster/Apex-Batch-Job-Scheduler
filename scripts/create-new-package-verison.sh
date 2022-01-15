@@ -32,4 +32,12 @@ git config --local user.email "action@github.com"
 git config --local user.name "GitHub Action Bot"
 git commit -m "Update Package Version in Readme and Docs"
 git push
-exit 0
+
+curl \
+  -X POST \
+  -H "Accept: application/vnd.github.v3+json" \
+  -H "Authorization: Bearer $GITHUB_TOKEN" \
+  https://api.github.com/repos/$REPO_NAME/statuses/$latestSha \
+  -d '{"state":"success", "description": "Build success", "context": "build"}'
+
+  exit 0
