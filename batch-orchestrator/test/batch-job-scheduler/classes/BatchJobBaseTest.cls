@@ -36,10 +36,13 @@ public with sharing class BatchJobBaseTest {
         enhancedLoggingbatchJob.logInformation(asyncJobId, 'test');
         enhancedLoggingbatchJob.logEndOfBatch(new List<Account>{ new Account(Name = 'Test Batch Job') }, asyncJobId, true, 'test');
         enhancedLoggingbatchJob.logEndOfBatch(new List<Account>{ new Account(Name = 'Test Batch Job') }, asyncJobId, false, 'test');
+        enhancedLoggingbatchJob.logStartInformation(asyncJobId, 'test');
+        enhancedLoggingbatchJob.logFinishInformation(asyncJobId, 'test');
+
         Test.stopTest();
 
         System.assertEquals(
-            6,
+            8,
             [SELECT COUNT() FROM Batch_Job_Log__c WHERE RecordTypeId = :RecordTypeCache.LOG_RECORD_TYPE_CHILD],
             'Needed to create 6 Child Logs (5 manual, one automatic from finish method), that did not happen'
         );

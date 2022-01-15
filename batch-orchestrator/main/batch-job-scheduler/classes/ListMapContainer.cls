@@ -1,7 +1,7 @@
 /**
  * This class is part of the sfdx-batch-orchestrator package, released under the MIT license.
  *
- * @description       : Helper class that encapsulates Map<String,List<SObject>> for a generic SObject.
+ * @description       : Helper class that encapsulates Map<Integer,List<SObject>> for a generic SObject.
  * @author            : dschibster
  * @group             : Scheduler
  * @last modified on  : 2021-08-27
@@ -9,7 +9,7 @@
  **/
 
 public class ListMapContainer {
-    Map<String, List<SObject>> objectMap;
+    Map<Integer, List<SObject>> objectMap;
     SObjectType sobjectType;
     String sobjectTypeString;
 
@@ -17,12 +17,12 @@ public class ListMapContainer {
         this.sobjectType = sobjType;
         this.sobjectTypeString = sobjType.getDescribe().getName();
 
-        String typedMapString = 'Map<String,List<' + sobjectTypeString + '>>';
+        String typedMapString = 'Map<Integer,List<' + sobjectTypeString + '>>';
         Type mapType = Type.forName(typedMapString);
-        objectMap = (Map<String, List<SObject>>) mapType.newInstance();
+        objectMap = (Map<Integer, List<SObject>>) mapType.newInstance();
     }
 
-    public Map<String, List<SObject>> getMap() {
+    public Map<Integer, List<SObject>> getMap() {
         return this.objectMap;
     }
 
@@ -30,7 +30,7 @@ public class ListMapContainer {
         return this.sobjectType;
     }
 
-    public void addToMap(String key, SObject sobj) {
+    public void addToMap(Integer key, SObject sobj) {
         if (sobj.getSObjectType() != this.sobjectType) {
             throw new TypeException('The SObject you wanted to add to this Map is not the one the Map is constructed with');
         }
@@ -42,15 +42,15 @@ public class ListMapContainer {
         this.objectMap.get(key).add(sobj);
     }
 
-    public Boolean containsKey(String key) {
+    public Boolean containsKey(Integer key) {
         return this.objectMap.containsKey(key);
     }
 
-    public List<SObject> get(String key) {
+    public List<SObject> get(Integer key) {
         return this.objectMap.get(key);
     }
 
-    public Set<String> keySet() {
+    public Set<Integer> keySet() {
         return this.objectMap.keySet();
     }
 }
