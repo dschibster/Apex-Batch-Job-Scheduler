@@ -9,7 +9,6 @@
  **/
 
 public with sharing class RunBatchApexJobController {
-    BatchJobBase batchJobToRun;
     Batch_Apex_Job__c jobRecord;
 
     public RunBatchApexJobController(ApexPages.StandardController stdCtrl) {
@@ -18,24 +17,13 @@ public with sharing class RunBatchApexJobController {
                 new List<String>{ 'Batch_Class_Name__c', 'Batch_Job_Schedule__c', 'EnhancedLogging__c', 'Batch_Size__c', 'RecordType.DeveloperName' }
             );
         }
-        Batch_Apex_Job__c batchApexJob = (Batch_Apex_Job__c) stdCtrl.getRecord();
-
-        batchJobToRun = (BatchJobBase) Type.forName(batchApexJob.Batch_Class_Name__c).newInstance();
-        batchJobToRun.jobType = batchApexJob.RecordType.DeveloperName;
-        batchJobToRun.executeNextJob = false;
-        batchJobToRun.jobId = batchApexJob.Id;
-        batchJobToRun.scheduleId = batchApexJob.Batch_Job_Schedule__c;
-        batchJobToRun.className = batchApexJob.Batch_Class_Name__c;
-        batchJobToRun.enhancedLoggingEnabled = batchApexJob.EnhancedLogging__c;
-
-        jobRecord = batchApexJob;
+        jobRecord = (Batch_Apex_Job__c) stdCtrl.getRecord();
     }
 
     public PageReference runJob() {
-        batchJobToRun.enqueue(Integer.valueOf(jobRecord.Batch_Size__c));
+        BatchOrchestrator.runBatchJob(jobRecord);
         PageReference ref = new PageReference('/' + jobRecord.Batch_Job_Schedule__c);
         ref.setRedirect(true);
-
         return ref;
     }
 }
