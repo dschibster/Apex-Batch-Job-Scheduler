@@ -103,7 +103,7 @@ global with sharing class BatchJobScheduler implements Schedulable {
             Id scheduleId = baj.Batch_JOb_Schedule__c;
             Id jobId = baj.Id;
             BatchJobBase job = getBatchJob(baj.Batch_Class_Name__c, baj.RecordType.DeveloperName);
-            if (job != null && !Test.isRunningTest()) {
+            if (job != null) {
                 job.batchJobScheduler = this;
                 job.scheduleId = scheduleId;
                 job.jobId = jobId;

@@ -40,14 +40,16 @@ public class BatchJobSchedulerTest {
         sched.Cron_Trigger_Id__c = cronTriggerId;
         update sched;
 
+        Test.startTest();
         BatchJobScheduler batchJobScheduler = new BatchJobScheduler();
         batchJobScheduler.run(cronTriggerId);
+        Test.stopTest();
 
         List<Account> accounts = [SELECT Id, Type FROM Account];
         System.assertEquals(3, accounts.size(), 'The Account were not found');
-        System.assertEquals('_BJS_Testing_', accounts[0].Type, 'The Type was not switched for Account 1');
-        System.assertEquals('_BJS_Testing_', accounts[1].Type, 'The Type was not switched for Account 2');
-        System.assertEquals('_BJS_Testing_', accounts[2].Type, 'The Type was not switched for Account 3');
+        System.assertEquals('Prospect', accounts[0].Type, 'The Type was not switched for Account 1');
+        System.assertEquals('Prospect', accounts[1].Type, 'The Type was not switched for Account 2');
+        System.assertEquals('Prospect', accounts[2].Type, 'The Type was not switched for Account 3');
     }
 
     @isTest
@@ -59,14 +61,19 @@ public class BatchJobSchedulerTest {
         update sched;
 
         BatchJobScheduler batchJobScheduler = new BatchJobScheduler();
+        BatchJobBase.executeJobsInTestContext = false; //Setting this variable to simulate the first job simply having run.
         batchJobScheduler.run(cronTriggerId);
+        BatchJobBase.executeJobsInTestContext = true; //The next Job should be run however.
+
+        Test.startTest();
         batchJobScheduler.executeNextJob();
+        Test.stopTest();
 
         List<Account> accounts = [SELECT Id, Type FROM Account];
         System.assertEquals(3, accounts.size(), 'The Account were not found');
-        System.assertEquals('_BJS_Testing_', accounts[0].Type, 'The Type was not switched for Account 1');
-        System.assertEquals('_BJS_Testing_', accounts[1].Type, 'The Type was not switched for Account 2');
-        System.assertEquals('_BJS_Testing_', accounts[2].Type, 'The Type was not switched for Account 3');
+        System.assertEquals('Prospect', accounts[0].Type, 'The Type was not switched for Account 1');
+        System.assertEquals('Prospect', accounts[1].Type, 'The Type was not switched for Account 2');
+        System.assertEquals('Prospect', accounts[2].Type, 'The Type was not switched for Account 3');
     }
 
     @isTest
@@ -168,6 +175,7 @@ public class BatchJobSchedulerTest {
         upsert batchJobs;
 
         BatchJobScheduler batchJobScheduler = new BatchJobScheduler();
+        BatchJobBase.executeJobsInTestContext = false; //Setting this variable to simulate the first job simply having run.
         batchJobScheduler.run(cronTriggerId);
         batchJobScheduler.executeNextJob();
 
@@ -202,6 +210,7 @@ public class BatchJobSchedulerTest {
         upsert batchJobs;
 
         BatchJobScheduler batchJobScheduler = new BatchJobScheduler();
+        BatchJobBase.executeJobsInTestContext = false; //Setting this variable to simulate the first job simply having run.
         batchJobScheduler.run(cronTriggerId);
         batchJobScheduler.executeNextJob();
 

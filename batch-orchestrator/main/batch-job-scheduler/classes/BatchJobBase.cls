@@ -35,6 +35,8 @@ public virtual with sharing class BatchJobBase implements Finalizer {
     public String className;
     public String asyncJobId;
 
+    public static Boolean executeJobsInTestContext = true;
+
     public void startLogging(Id asyncApexJobId) {
         if (enhancedLoggingEnabled) {
             if (jobType == 'Queueable') {
@@ -107,12 +109,14 @@ public virtual with sharing class BatchJobBase implements Finalizer {
     }
 
     public Id enqueue(Integer batchSize) {
-        switch on jobType {
-            when 'Queueable' {
-                return System.enqueueJob((System.Queueable) this);
-            }
-            when 'Batchable' {
-                return Database.executeBatch((Database.Batchable<Object>) this, batchSize);
+        if (!Test.isRunningTest() || executeJobsInTestContext) {
+            switch on jobType {
+                when 'Queueable' {
+                    return System.enqueueJob((System.Queueable) this);
+                }
+                when 'Batchable' {
+                    return Database.executeBatch((Database.Batchable<Object>) this, batchSize);
+                }
             }
         }
         return null;
