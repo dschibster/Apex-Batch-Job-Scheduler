@@ -15,7 +15,7 @@
 </a>
 <span>
 <a href="https://githubsfdeploy.herokuapp.com">
-  <img width="150" alt="Deploy to Salesforce"
+  <img width="180" alt="Deploy to Salesforce"
        src="https://github.com/dschibster/sfdx-batch-orchestrator/blob/master/resources/deploy_unmanaged.png">
 </a>
 </span>
