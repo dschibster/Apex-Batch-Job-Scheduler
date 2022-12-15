@@ -28,8 +28,19 @@ sed -i "s/04t.\{15\}/$PACKAGEVERSIONID/g" README.md
 
 git add docs/installation.md
 git add README.md
+git add sfdx-project.json
 git config --local user.email "action@github.com"
 git config --local user.name "GitHub Action Bot"
-git commit -m "Update Package Version in Readme and Docs"
+git commit -m "Update Package Version sfdx-project.json, README and Installation Docs"
 git push
-exit 0
+
+LATEST_HASH=$(git rev-parse HEAD)
+
+curl \
+  -X POST \
+  -H "Accept: application/vnd.github.v3+json" \
+  -H "Authorization: Bearer $GITHUB_TOKEN" \
+  https://api.github.com/repos/$REPO_NAME/statuses/$LATEST_HASH \
+  -d '{"state":"success", "description": "Build success", "context": "build"}'
+
+  exit 0

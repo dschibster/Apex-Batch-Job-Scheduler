@@ -73,9 +73,7 @@ public with sharing class BatchJobLogger {
     public static void writeParentLog(String className, Id asyncJobId, Id scheduleId, Id jobId, Boolean isAsync) {
         Batch_Job_Log__c parentLog = getParentLog(className, asyncJobId, scheduleId, jobId);
         if (isAsync) {
-            EventBus.publish(
-                new BatchApexStatusEventBuilder().withSObjectJSON(JSON.serializePretty(parentLog)).getRecord()
-            );
+            EventBus.publish(new BatchApexStatusEventBuilder().withSObjectJSON(JSON.serializePretty(parentLog)).getRecord());
         } else {
             insert parentLog;
         }
@@ -88,22 +86,12 @@ public with sharing class BatchJobLogger {
     public static void writeQueueableParentLog(String className, Id asyncJobId, Id scheduleId, Id jobId) {
         Batch_Job_Log__c queueableLog = getParentLog(className, asyncJobId, scheduleId, jobId);
         queueableLog.RecordTypeId = RecordTypeCache.LOG_RECORD_TYPE_QUEUEABLE;
-        EventBus.publish(
-            new BatchApexStatusEventBuilder().withSObjectJSON(JSON.serializePretty(queueableLog)).getRecord()
-        );
+        EventBus.publish(new BatchApexStatusEventBuilder().withSObjectJSON(JSON.serializePretty(queueableLog)).getRecord());
     }
 
     public static void updateParentQueueableLog(Id asyncJobId) {
         AsyncApexJob job = [
-            SELECT
-                Id,
-                Status,
-                NumberOfErrors,
-                JobItemsProcessed,
-                TotalJobItems,
-                CompletedDate,
-                CreatedBy.Email,
-                ExtendedStatus
+            SELECT Id, Status, NumberOfErrors, JobItemsProcessed, TotalJobItems, CompletedDate, CreatedBy.Email, ExtendedStatus
             FROM AsyncApexJob
             WHERE Id = :asyncJobId
         ];
@@ -147,15 +135,7 @@ public with sharing class BatchJobLogger {
     //Log batch job exection result
     public static void logLegacy(String batchJobName, Id asyncJobId, String summary, Id scheduleId, Id jobId) {
         AsyncApexJob job = [
-            SELECT
-                Id,
-                Status,
-                NumberOfErrors,
-                JobItemsProcessed,
-                TotalJobItems,
-                CompletedDate,
-                CreatedBy.Email,
-                ExtendedStatus
+            SELECT Id, Status, NumberOfErrors, JobItemsProcessed, TotalJobItems, CompletedDate, CreatedBy.Email, ExtendedStatus
             FROM AsyncApexJob
             WHERE Id = :asyncJobId
         ];
@@ -175,8 +155,7 @@ public with sharing class BatchJobLogger {
                 Batches_Processed__c = job.JobItemsProcessed,
                 Number_of_Errors__c = job.NumberOfErrors,
                 RecordTypeId = RecordTypeCache.LOG_RECORD_TYPE_LEGACY,
-                Execution_Result__c = (String.isNotBlank(executeResult) ? executeResult : '') +
-                    (String.isNotBlank(summary) ? '\n' + summary : '')
+                Execution_Result__c = (String.isNotBlank(executeResult) ? executeResult : '') + (String.isNotBlank(summary) ? '\n' + summary : '')
             );
             insert bjl;
         } catch (Exception ex) {

@@ -30,8 +30,12 @@ jobs:
               run: 'echo "${{ secrets.SFDX_AUTH_URL }}" > ./SALESFORCE_AUTH_URL.txt'
             - name: Authenticate Dev Hub
               run: "sfdx force:auth:sfdxurl:store -f ./SALESFORCE_AUTH_URL.txt -a devhub -d"
+            - name: Populate auth file for test hub
+              run: 'echo "${{ secrets.TESTHUB_AUTH_URL }}" > ./SALESFORCE_AUTH_URL.txt'
+            - name: Authenticate Test Hub
+              run: "sfdx force:auth:sfdxurl:store -f ./SALESFORCE_AUTH_URL.txt -a testhub -d"
             - name: Create Scratch Org
-              run: sfdx force:org:create --targetdevhubusername devhub --setdefaultusername --definitionfile config/project-scratch-def.json --setalias ciorg --durationdays 1
+              run: sfdx force:org:create --targetdevhubusername testhub --setdefaultusername --definitionfile config/project-scratch-def.json --setalias ciorg --durationdays 1
             - name: Deploy source
               run: sfdx force:source:push
             - name: Run Apex tests
@@ -39,7 +43,7 @@ jobs:
             - name: Delete Scratch Org
               run: sfdx force:org:delete --noprompt
             - name: Upload code coverage for Apex to Codecov.io
-              uses: codecov/codecov-action@v1
+              uses: codecov/codecov-action@v2
               with:
                   flags: Apex
             - name: Increment Package Version in sfdx-project.json
@@ -49,9 +53,12 @@ jobs:
                   ./scripts/increment-package-version.sh
             - name: Create new Package version
               if: github.event.action != 'closed' && github.event_name == 'pull_request' && github.actor == github.event.repository.owner.login
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  REPO_NAME: ${{ github.repository }}
               run: |
-                  chmod +x scripts/increment-package-version.sh
-                  ./scripts/increment-package-version.sh
+                  chmod +x scripts/create-new-package-verison.sh
+                  ./scripts/create-new-package-verison.sh
             - name: Promote current latest Package version
               if: github.ref == 'refs/heads/master' && github.actor == github.event.repository.owner.login
               run: |

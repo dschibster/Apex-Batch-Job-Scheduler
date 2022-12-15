@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-$PACKAGEVERSIONID=$( jq -r 'last(.packageAliases[])' sfdx-project.json )
+PACKAGEVERSIONID=$( jq -r 'last(.packageAliases[])' sfdx-project.json )
 
 echo "Promoting latest package version"
 
