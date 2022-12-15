@@ -10,7 +10,7 @@
 
 <div>
 <span><a href="https://login.salesforce.com/packaging/installPackage.apexp?p0=04t09000000iktKAAQ" target="_blank">
-  <img width="150" alt="Deploy to Salesforce"
+  <img width="180" alt="Deploy to Salesforce"
        src="https://github.com/dschibster/sfdx-batch-orchestrator/blob/master/resources/deploy_unlocked.png">
 </a>
 <span>
@@ -23,7 +23,7 @@
 For your Sandbox:
   <div><span>
     <a href="https://test.salesforce.com/packaging/installPackage.apexp?p0=04t09000000iktKAAQ" target="_blank">
-  <img width="150" alt="Deploy to Salesforce"
+  <img width="180" alt="Deploy to Salesforce"
        src="https://github.com/dschibster/sfdx-batch-orchestrator/blob/master/resources/deploy_unlocked.png">
 </a></span><div>
 
