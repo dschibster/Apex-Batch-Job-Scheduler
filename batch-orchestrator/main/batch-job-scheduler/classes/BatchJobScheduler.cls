@@ -28,7 +28,7 @@
 
 global with sharing class BatchJobScheduler implements Schedulable {
     //Batch jobs in parallel run batches
-    public ListMapContainer batchJobs;
+    public Map<Integer, List<Batch_Apex_Job__c>> batchJobs;
     @TestVisible
     private Map<Integer, Boolean> isEnabledMap;
     @TestVisible
@@ -45,7 +45,7 @@ global with sharing class BatchJobScheduler implements Schedulable {
     }
 
     public void executeJobs() {
-        if (batchJobs.getMap().keySet().isEmpty()) {
+        if (batchJobs.keySet().isEmpty()) {
             return;
         }
 
@@ -75,24 +75,26 @@ global with sharing class BatchJobScheduler implements Schedulable {
         return result;
     }
 
-    public ListMapContainer loadActiveBatchJobs(Id cronTriggerId) {
+    public Map<Integer, List<Batch_Apex_Job__c>> loadActiveBatchJobs(Id cronTriggerId) {
         Batch_Job_Schedule__c schedule = [SELECT Id FROM Batch_Job_Schedule__c WHERE Cron_Trigger_Id__c = :cronTriggerId];
         return loadActiveBatchJobsById(schedule.Id);
     }
 
     //load active batch jobs from Batch_Apex_Job__c, sort by Batch No and Batch Sequence
-    public ListMapContainer loadActiveBatchJobsById(Id scheduleId) {
-        ListMapContainer batchJobListMap = new ListMapContainer(Batch_Apex_Job__c.SObjectType);
+    public Map<Integer, List<Batch_Apex_Job__c>> loadActiveBatchJobsById(Id scheduleId) {
+        Map<Integer, List<Batch_Apex_Job__c>> batchJobListMap = new Map<Integer, List<Batch_Apex_Job__c>>();
 
         for (Batch_Apex_Job__c baj : [
             SELECT Id, Name, Enabled__c, Batch_Class_Name__c, Batch_Size__c, Batch_Group__c, Batch_Job_Schedule__c, EnhancedLogging__c, RecordType.DeveloperName
             FROM Batch_Apex_Job__c
-            WHERE Batch_Job_Schedule__c = :scheduleId
+            WHERE Batch_Job_Schedule__c = :scheduleId AND Enabled__c = TRUE
             ORDER BY Batch_Group__c, CreatedDate
         ]) {
-            if (baj.Enabled__c) {
-                batchJobListMap.addToMap(Integer.valueOf(baj.Batch_Group__c), baj);
+            Integer groupOrder = Integer.valueOf(baj.Batch_Group__c);
+            if (!batchJobListMap.containsKey(groupOrder)) {
+                batchJobListMap.put(groupOrder, new List<Batch_Apex_Job__c>());
             }
+            batchJobListMap.get(groupOrder).add(baj);
         }
 
         return batchJobListMap;
@@ -146,8 +148,7 @@ global with sharing class BatchJobScheduler implements Schedulable {
     }
 
     private Integer getNextIndexWithEnabledJobs() {
-        List<Integer> listOfEnabledBatchGroups = new List<Integer>(batchJobs.getMap().keySet());
-
+        List<Integer> listOfEnabledBatchGroups = new List<Integer>(batchJobs.keySet());
         listOfEnabledBatchGroups.sort();
         for (Integer enabledKey : listOfEnabledBatchGroups) {
             if (enabledKey > index) {
