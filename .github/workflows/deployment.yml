@@ -29,15 +29,15 @@ jobs:
             - name: Populate auth file
               run: 'echo "${{ secrets.SFDX_AUTH_URL }}" > ./SALESFORCE_AUTH_URL.txt'
             - name: Authenticate Dev Hub
-              run: "sfdx force:auth:sfdxurl:store -f ./SALESFORCE_AUTH_URL.txt -a devhub -d"
+              run: "sf org login sfdx-url -f ./SALESFORCE_AUTH_URL.txt -a devhub -d"
             - name: Create Scratch Org
-              run: sfdx force:org:create --targetdevhubusername devhub --setdefaultusername --definitionfile config/project-scratch-def.json --setalias ciorg --durationdays 1
+              run: sf org create scratch --target-dev-hub devhub -d --definition-file config/project-scratch-def.json --alias ciorg -y 1
             - name: Deploy source
-              run: sfdx force:source:push
+              run: sf project deploy start
             - name: Run Apex tests
-              run: sfdx force:apex:test:run --codecoverage --resultformat human -d ./
+              run: sf apex run test -c --resultformat human -d ./
             - name: Delete Scratch Org
-              run: sfdx force:org:delete --noprompt
+              run: sf org delete scratch --no-prompt
             - name: Upload code coverage for Apex to Codecov.io
               uses: codecov/codecov-action@v2
               with:

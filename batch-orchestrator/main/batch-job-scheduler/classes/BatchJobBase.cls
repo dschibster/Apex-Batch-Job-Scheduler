@@ -105,6 +105,9 @@ public virtual with sharing class BatchJobBase implements Finalizer {
     }
 
     public void execute(FinalizerContext ctx) {
+        if (ctx.getResult() == ParentJobResult.UNHANDLED_EXCEPTION) {
+            logInformation(ctx?.getAsyncApexJobId(), ctx.getException().getMessage());
+        }
         finishBatch(ctx.getAsyncApexJobId());
     }
 
