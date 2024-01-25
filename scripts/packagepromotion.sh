@@ -54,7 +54,7 @@ cat sfdx-project.json
 
 #This promotes the package version
 echo "Promoting Package Version"
-sfdx package version promote -p $PACKAGEVERSIONID --noprompt -v devhub
+sfdx package version promote -p $PACKAGEVERSIONID --no-prompt -v devhub
 
 
 echo "Updating docs"
