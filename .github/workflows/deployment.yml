@@ -30,12 +30,8 @@ jobs:
               run: 'echo "${{ secrets.SFDX_AUTH_URL }}" > ./SALESFORCE_AUTH_URL.txt'
             - name: Authenticate Dev Hub
               run: "sfdx force:auth:sfdxurl:store -f ./SALESFORCE_AUTH_URL.txt -a devhub -d"
-            - name: Populate auth file for test hub
-              run: 'echo "${{ secrets.TESTHUB_AUTH_URL }}" > ./SALESFORCE_AUTH_URL.txt'
-            - name: Authenticate Test Hub
-              run: "sfdx force:auth:sfdxurl:store -f ./SALESFORCE_AUTH_URL.txt -a testhub -d"
             - name: Create Scratch Org
-              run: sfdx force:org:create --targetdevhubusername testhub --setdefaultusername --definitionfile config/project-scratch-def.json --setalias ciorg --durationdays 1
+              run: sfdx force:org:create --targetdevhubusername devhub --setdefaultusername --definitionfile config/project-scratch-def.json --setalias ciorg --durationdays 1
             - name: Deploy source
               run: sfdx force:source:push
             - name: Run Apex tests
