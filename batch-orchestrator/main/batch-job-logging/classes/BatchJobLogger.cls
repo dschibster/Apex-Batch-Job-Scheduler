@@ -96,7 +96,10 @@ public with sharing class BatchJobLogger {
             WHERE Id = :asyncJobId
         ];
 
-        DateTime completedDate = job.CompletedDate != null ? job.CompletedDate : DateTime.now();
+        Datetime completedDate = job.CompletedDate;
+        if (completedDate == null) {
+            completedDate = Datetime.now();
+        }
 
         BatchApexStatusEvent__e statusEvent = new BatchApexStatusEventBuilder()
             .withContext('FINISH')
